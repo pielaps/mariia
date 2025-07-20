@@ -3,21 +3,32 @@
 import { useState, useEffect, useRef } from "react"
 import { ChevronUp, ChevronDown, Globe } from "lucide-react"
 
-// Official Brand Icons Components
+// Custom Icons Components
 const GmailIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
-      d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.887.711-1.613 1.598-1.636a1.636 1.636 0 0 1 .674.132L12 9.993l9.728-6.04a1.636 1.636 0 0 1 .674-.132c.887.023 1.598.749 1.598 1.636z"
-      fill="#EA4335"
+      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
     />
+    <path d="m22 6-10 7L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="8" cy="12" r="1" fill="currentColor" />
+    <circle cx="16" cy="12" r="1" fill="currentColor" />
   </svg>
 )
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none" />
     <path
-      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-      fill="#0A66C2"
+      d="M8 11v5M8 8v.01M16 11c0-1.5-1-2.5-2.5-2.5S11 9.5 11 11v5M13.5 11v5"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -25,9 +36,12 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 const MastodonIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
-      d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
-      fill="#6364FF"
+      d="M12 2C6.48 2 2 6.48 2 12c0 3.5 1.8 6.6 4.5 8.4.3.2.7.1.9-.2.2-.3.1-.7-.2-.9C5.1 17.8 4 15 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8c0 3-1.1 5.8-3.2 7.3-.3.2-.4.6-.2.9.2.3.6.4.9.2C20.2 18.6 22 15.5 22 12c0-5.52-4.48-10-10-10z"
+      fill="currentColor"
     />
+    <path d="M8 9c0-.5.5-1 1-1h6c.5 0 1 .5 1 1v4c0 1.1-.9 2-2 2h-4c-1.1 0-2-.9-2-2V9z" fill="currentColor" />
+    <circle cx="10" cy="11" r="1" fill="white" />
+    <circle cx="14" cy="11" r="1" fill="white" />
   </svg>
 )
 
@@ -46,7 +60,7 @@ const content = {
       name: "Mariia Priakhina",
       role: "Business Analyst | Market Researcher | Data Analyst",
       bio: "International Economics and Business student with a passion for data-driven decision making and market analysis. I combine analytical thinking with business acumen to uncover insights that drive strategic growth and solve complex business challenges.",
-      ctaButton: "Contact Me",
+      ctaButton: "Let's Connect",
     },
     experience: {
       title: "Professional Experience",
@@ -156,7 +170,7 @@ const content = {
       name: "Mariia Priakhina",
       role: "Analyste d'Affaires | Chercheuse de Marché | Analyste de Données",
       bio: "Étudiante en Économie Internationale et Commerce avec une passion pour la prise de décision basée sur les données et l'analyse de marché. Je combine la pensée analytique avec l'acumen commercial pour découvrir des insights qui stimulent la croissance stratégique et résolvent des défis commerciaux complexes.",
-      ctaButton: "Contactez-Moi",
+      ctaButton: "Connectons-nous",
     },
     experience: {
       title: "Expérience Professionnelle",
@@ -266,7 +280,7 @@ const content = {
       name: "Mariia Priakhina",
       role: "Obchodní Analytička | Výzkumnice Trhu | Datová Analytička",
       bio: "Studentka Mezinárodní ekonomie a podnikání s vášní pro rozhodování založené na datech a analýzu trhu. Kombinuji analytické myšlení s obchodním důvtipem k odhalování poznatků, které řídí strategický růst a řeší složité obchodní výzvy.",
-      ctaButton: "Kontaktujte Mě",
+      ctaButton: "Spojme se",
     },
     experience: {
       title: "Profesní Zkušenosti",
@@ -376,7 +390,7 @@ const content = {
       name: "Мария Приахина",
       role: "Бизнес-Аналитик | Исследователь Рынка | Аналитик Данных",
       bio: "Студентка международной экономики и бизнеса с страстью к принятию решений на основе данных и анализу рынка. Я сочетаю аналитическое мышление с деловой хваткой для выявления инсайтов, которые способствуют стратегическому росту и решают сложные бизнес-задачи.",
-      ctaButton: "Свяжитесь со Мной",
+      ctaButton: "Давайте свяжемся",
     },
     experience: {
       title: "Профессиональный Опыт",
@@ -610,13 +624,15 @@ export default function ResumePage() {
     setIsLanguageDropdownOpen(false)
   }
 
+  const currentLanguage = languages.find((lang) => lang.code === language)
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 dark:from-slate-900 dark:via-blue-gray-900/30 dark:to-slate-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-gray-50 to-steel-50 dark:from-slate-900 dark:via-blue-gray-900/20 dark:to-slate-900 transition-colors duration-300">
       {/* Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
           isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-        } bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700/50`}
+        } bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700/30`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -633,7 +649,7 @@ export default function ResumePage() {
                   onClick={() => scrollToSection(key)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     activeSection === key
-                      ? "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/70"
+                      ? "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/50"
                       : "text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                   }`}
                 >
@@ -647,7 +663,7 @@ export default function ResumePage() {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
+                className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
                 title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
               >
                 {theme === "light" ? (
@@ -675,9 +691,10 @@ export default function ResumePage() {
               <div className="relative">
                 <button
                   onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                  className="flex items-center space-x-1 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
+                  className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
                 >
                   <Globe className="w-4 h-4" />
+                  <span className="text-sm font-medium">{currentLanguage?.flag}</span>
                   <ChevronDown className="w-3 h-3" />
                 </button>
 
@@ -704,7 +721,7 @@ export default function ResumePage() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
+                className="md:hidden p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
               >
                 {isMobileMenuOpen ? (
                   <div className="w-5 h-5 relative">
@@ -724,7 +741,7 @@ export default function ResumePage() {
 
           {/* Mobile Navigation */}
           {isMobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-200 dark:border-slate-700/50">
+            <div className="md:hidden py-4 border-t border-slate-200 dark:border-slate-700/30">
               <nav className="flex flex-col space-y-2">
                 {Object.entries(t.nav).map(([key, label]) => (
                   <button
@@ -732,7 +749,7 @@ export default function ResumePage() {
                     onClick={() => scrollToSection(key)}
                     className={`px-3 py-2 rounded-md text-left transition-colors ${
                       activeSection === key
-                        ? "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/70"
+                        ? "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/50"
                         : "text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                     }`}
                   >
@@ -748,11 +765,7 @@ export default function ResumePage() {
       {/* Main Content */}
       <main className="pt-16">
         {/* About Section */}
-        <section
-          id="about"
-          ref={aboutRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-slate-900/50 dark:to-blue-gray-900/50"
-        >
+        <section id="about" ref={aboutRef} className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-slate-400 to-blue-500 p-1">
@@ -787,7 +800,7 @@ export default function ResumePage() {
         <section
           id="experience"
           ref={experienceRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100/80 to-gray-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-white/30 dark:bg-slate-800/30"
         >
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">
@@ -797,7 +810,7 @@ export default function ResumePage() {
               {t.experience.jobs.map((job, index) => (
                 <div
                   key={index}
-                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow"
+                  className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                     <div>
@@ -821,11 +834,7 @@ export default function ResumePage() {
         </section>
 
         {/* Research Section */}
-        <section
-          id="researches"
-          ref={researchesRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50/80 to-purple-50/80 dark:from-blue-gray-900/50 dark:to-slate-900/80"
-        >
+        <section id="researches" ref={researchesRef} className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">
               {t.researches.title}
@@ -834,7 +843,7 @@ export default function ResumePage() {
               {t.researches.projects.map((project, index) => (
                 <div
                   key={index}
-                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+                  className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
                 >
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
                     {project.title}
@@ -859,7 +868,7 @@ export default function ResumePage() {
         <section
           id="volunteer"
           ref={volunteerRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-100/80 to-blue-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-white/30 dark:bg-slate-800/30"
         >
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">{t.volunteer.title}</h2>
@@ -867,7 +876,7 @@ export default function ResumePage() {
               {t.volunteer.activities.map((activity, index) => (
                 <div
                   key={index}
-                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow"
+                  className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                     <div>
@@ -884,11 +893,7 @@ export default function ResumePage() {
         </section>
 
         {/* Contact Section */}
-        <section
-          id="contact"
-          ref={contactRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50/80 to-pink-50/80 dark:from-blue-gray-900/50 dark:to-slate-900/80"
-        >
+        <section id="contact" ref={contactRef} className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t.contact.title}</h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">{t.contact.subtitle}</p>
@@ -896,9 +901,9 @@ export default function ResumePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
               <a
                 href={`mailto:${t.contact.email}`}
-                className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+                className="flex items-center space-x-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
               >
-                <GmailIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <GmailIcon className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300">{t.contact.email}</span>
               </a>
 
@@ -906,9 +911,9 @@ export default function ResumePage() {
                 href={`https://${t.contact.linkedin}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+                className="flex items-center space-x-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
               >
-                <LinkedInIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <LinkedInIcon className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300">LinkedIn</span>
               </a>
 
@@ -916,9 +921,9 @@ export default function ResumePage() {
                 href={`https://mastodon.social/${t.contact.mastodon}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+                className="flex items-center space-x-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
               >
-                <MastodonIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <MastodonIcon className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300">Mastodon</span>
               </a>
             </div>
@@ -927,7 +932,7 @@ export default function ResumePage() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-700/50 bg-gradient-to-br from-slate-100/80 to-gray-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80">
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-700/30 bg-white/30 dark:bg-slate-800/30">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
             © 2024 {t.about.name}. Built with React & Next.js
