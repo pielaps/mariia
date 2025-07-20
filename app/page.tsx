@@ -1,49 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ChevronUp, ChevronDown, Globe } from "lucide-react"
-
-// Custom Icons Components
-const GmailIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
-    <path d="m22 6-10 7L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="8" cy="12" r="1" fill="currentColor" />
-    <circle cx="16" cy="12" r="1" fill="currentColor" />
-  </svg>
-)
-
-const LinkedInIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none" />
-    <path
-      d="M8 11v5M8 8v.01M16 11c0-1.5-1-2.5-2.5-2.5S11 9.5 11 11v5M13.5 11v5"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-const MastodonIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M12 2C6.48 2 2 6.48 2 12c0 3.5 1.8 6.6 4.5 8.4.3.2.7.1.9-.2.2-.3.1-.7-.2-.9C5.1 17.8 4 15 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8c0 3-1.1 5.8-3.2 7.3-.3.2-.4.6-.2.9.2.3.6.4.9.2C20.2 18.6 22 15.5 22 12c0-5.52-4.48-10-10-10z"
-      fill="currentColor"
-    />
-    <path d="M8 9c0-.5.5-1 1-1h6c.5 0 1 .5 1 1v4c0 1.1-.9 2-2 2h-4c-1.1 0-2-.9-2-2V9z" fill="currentColor" />
-    <circle cx="10" cy="11" r="1" fill="white" />
-    <circle cx="14" cy="11" r="1" fill="white" />
-  </svg>
-)
+import { ChevronUp, Moon, Sun, Globe, Mail, Linkedin, Users } from "lucide-react"
 
 // Language content
 const content = {
@@ -51,8 +9,8 @@ const content = {
     nav: {
       about: "About Me",
       experience: "Experience",
-      researches: "Researches",
       volunteer: "Volunteer",
+      research: "Research",
       contact: "Contact",
     },
     about: {
@@ -60,7 +18,6 @@ const content = {
       name: "Mariia Priakhina",
       role: "Business Analyst | Market Researcher | Data Analyst",
       bio: "International Economics and Business student with a passion for data-driven decision making and market analysis. I combine analytical thinking with business acumen to uncover insights that drive strategic growth and solve complex business challenges.",
-      ctaButton: "Let's Connect",
     },
     experience: {
       title: "Professional Experience",
@@ -100,29 +57,6 @@ const content = {
         },
       ],
     },
-    researches: {
-      title: "Research Projects",
-      projects: [
-        {
-          title: "Consumer Behavior in Digital Markets",
-          description:
-            "Comprehensive analysis of e-commerce purchasing patterns and digital consumer preferences using machine learning techniques.",
-          link: "#",
-        },
-        {
-          title: "International Trade Impact Analysis",
-          description:
-            "Study on the effects of trade policies on emerging markets, focusing on economic indicators and business environment changes.",
-          link: "#",
-        },
-        {
-          title: "Market Segmentation for Sustainable Products",
-          description:
-            "Research on consumer segments interested in sustainable products, analyzing demographic and psychographic factors.",
-          link: "#",
-        },
-      ],
-    },
     volunteer: {
       title: "Volunteer Experience",
       activities: [
@@ -149,6 +83,29 @@ const content = {
         },
       ],
     },
+    research: {
+      title: "Research Projects",
+      projects: [
+        {
+          title: "Consumer Behavior in Digital Markets",
+          description:
+            "Comprehensive analysis of e-commerce purchasing patterns and digital consumer preferences using machine learning techniques.",
+          link: "#",
+        },
+        {
+          title: "International Trade Impact Analysis",
+          description:
+            "Study on the effects of trade policies on emerging markets, focusing on economic indicators and business environment changes.",
+          link: "#",
+        },
+        {
+          title: "Market Segmentation for Sustainable Products",
+          description:
+            "Research on consumer segments interested in sustainable products, analyzing demographic and psychographic factors.",
+          link: "#",
+        },
+      ],
+    },
     contact: {
       title: "Get In Touch",
       subtitle: "Feel free to reach out for collaborations or opportunities",
@@ -161,8 +118,8 @@ const content = {
     nav: {
       about: "À Propos",
       experience: "Expérience",
-      researches: "Recherches",
       volunteer: "Bénévolat",
+      research: "Recherche",
       contact: "Contact",
     },
     about: {
@@ -170,7 +127,6 @@ const content = {
       name: "Mariia Priakhina",
       role: "Analyste d'Affaires | Chercheuse de Marché | Analyste de Données",
       bio: "Étudiante en Économie Internationale et Commerce avec une passion pour la prise de décision basée sur les données et l'analyse de marché. Je combine la pensée analytique avec l'acumen commercial pour découvrir des insights qui stimulent la croissance stratégique et résolvent des défis commerciaux complexes.",
-      ctaButton: "Connectons-nous",
     },
     experience: {
       title: "Expérience Professionnelle",
@@ -210,29 +166,6 @@ const content = {
         },
       ],
     },
-    researches: {
-      title: "Projets de Recherche",
-      projects: [
-        {
-          title: "Comportement des Consommateurs dans les Marchés Numériques",
-          description:
-            "Analyse complète des modèles d'achat e-commerce et des préférences des consommateurs numériques utilisant des techniques d'apprentissage automatique.",
-          link: "#",
-        },
-        {
-          title: "Analyse d'Impact du Commerce International",
-          description:
-            "Étude sur les effets des politiques commerciales sur les marchés émergents, se concentrant sur les indicateurs économiques.",
-          link: "#",
-        },
-        {
-          title: "Segmentation de Marché pour les Produits Durables",
-          description:
-            "Recherche sur les segments de consommateurs intéressés par les produits durables, analysant les facteurs démographiques et psychographiques.",
-          link: "#",
-        },
-      ],
-    },
     volunteer: {
       title: "Expérience Bénévole",
       activities: [
@@ -259,6 +192,29 @@ const content = {
         },
       ],
     },
+    research: {
+      title: "Projets de Recherche",
+      projects: [
+        {
+          title: "Comportement des Consommateurs dans les Marchés Numériques",
+          description:
+            "Analyse complète des modèles d'achat e-commerce et des préférences des consommateurs numériques utilisant des techniques d'apprentissage automatique.",
+          link: "#",
+        },
+        {
+          title: "Analyse d'Impact du Commerce International",
+          description:
+            "Étude sur les effets des politiques commerciales sur les marchés émergents, se concentrant sur les indicateurs économiques.",
+          link: "#",
+        },
+        {
+          title: "Segmentation de Marché pour les Produits Durables",
+          description:
+            "Recherche sur les segments de consommateurs intéressés par les produits durables, analysant les facteurs démographiques et psychographiques.",
+          link: "#",
+        },
+      ],
+    },
     contact: {
       title: "Contactez-Moi",
       subtitle: "N'hésitez pas à me contacter pour des collaborations ou opportunités",
@@ -271,8 +227,8 @@ const content = {
     nav: {
       about: "O Mně",
       experience: "Zkušenosti",
-      researches: "Výzkumy",
       volunteer: "Dobrovolnictví",
+      research: "Výzkum",
       contact: "Kontakt",
     },
     about: {
@@ -280,7 +236,6 @@ const content = {
       name: "Mariia Priakhina",
       role: "Obchodní Analytička | Výzkumnice Trhu | Datová Analytička",
       bio: "Studentka Mezinárodní ekonomie a podnikání s vášní pro rozhodování založené na datech a analýzu trhu. Kombinuji analytické myšlení s obchodním důvtipem k odhalování poznatků, které řídí strategický růst a řeší složité obchodní výzvy.",
-      ctaButton: "Spojme se",
     },
     experience: {
       title: "Profesní Zkušenosti",
@@ -320,29 +275,6 @@ const content = {
         },
       ],
     },
-    researches: {
-      title: "Výzkumné Projekty",
-      projects: [
-        {
-          title: "Chování Spotřebitelů na Digitálních Trzích",
-          description:
-            "Komplexní analýza vzorců nákupů v e-commerce a preferencí digitálních spotřebitelů pomocí technik strojového učení.",
-          link: "#",
-        },
-        {
-          title: "Analýza Dopadu Mezinárodního Obchodu",
-          description:
-            "Studie o účincích obchodních politik na rozvíjející se trhy, zaměřená na ekonomické ukazatele a změny podnikatelského prostředí.",
-          link: "#",
-        },
-        {
-          title: "Segmentace Trhu pro Udržitelné Produkty",
-          description:
-            "Výzkum segmentů spotřebitelů zajímajících se o udržitelné produkty, analyzující demografické a psychografické faktory.",
-          link: "#",
-        },
-      ],
-    },
     volunteer: {
       title: "Dobrovolnické Zkušenosti",
       activities: [
@@ -369,6 +301,29 @@ const content = {
         },
       ],
     },
+    research: {
+      title: "Výzkumné Projekty",
+      projects: [
+        {
+          title: "Chování Spotřebitelů na Digitálních Trzích",
+          description:
+            "Komplexní analýza vzorců nákupů v e-commerce a preferencí digitálních spotřebitelů pomocí technik strojového učení.",
+          link: "#",
+        },
+        {
+          title: "Analýza Dopadu Mezinárodního Obchodu",
+          description:
+            "Studie o účincích obchodních politik na rozvíjející se trhy, zaměřená na ekonomické ukazatele a změny podnikatelského prostředí.",
+          link: "#",
+        },
+        {
+          title: "Segmentace Trhu pro Udržitelné Produkty",
+          description:
+            "Výzkum segmentů spotřebitelů zajímajících se o udržitelné produkty, analyzující demografické a psychografické faktory.",
+          link: "#",
+        },
+      ],
+    },
     contact: {
       title: "Kontaktujte Mě",
       subtitle: "Neváhejte mě kontaktovat ohledně spolupráce nebo příležitostí",
@@ -381,8 +336,8 @@ const content = {
     nav: {
       about: "Обо Мне",
       experience: "Опыт",
-      researches: "Исследования",
       volunteer: "Волонтёрство",
+      research: "Исследования",
       contact: "Контакты",
     },
     about: {
@@ -390,7 +345,6 @@ const content = {
       name: "Мария Приахина",
       role: "Бизнес-Аналитик | Исследователь Рынка | Аналитик Данных",
       bio: "Студентка международной экономики и бизнеса с страстью к принятию решений на основе данных и анализу рынка. Я сочетаю аналитическое мышление с деловой хваткой для выявления инсайтов, которые способствуют стратегическому росту и решают сложные бизнес-задачи.",
-      ctaButton: "Давайте свяжемся",
     },
     experience: {
       title: "Профессиональный Опыт",
@@ -430,29 +384,6 @@ const content = {
         },
       ],
     },
-    researches: {
-      title: "Исследовательские Проекты",
-      projects: [
-        {
-          title: "Поведение Потребителей на Цифровых Рынках",
-          description:
-            "Комплексный анализ моделей покупок в электронной коммерции и предпочтений цифровых потребителей с использованием техник машинного обучения.",
-          link: "#",
-        },
-        {
-          title: "Анализ Влияния Международной Торговли",
-          description:
-            "Исследование влияния торговой политики на развивающиеся рынки, сосредоточенное на экономических показателях и изменениях бизнес-среды.",
-          link: "#",
-        },
-        {
-          title: "Сегментация Рынка Устойчивых Продуктов",
-          description:
-            "Исследование сегментов потребителей, заинтересованных в устойчивых продуктах, анализ демографических и психографических факторов.",
-          link: "#",
-        },
-      ],
-    },
     volunteer: {
       title: "Волонтёрский Опыт",
       activities: [
@@ -479,6 +410,29 @@ const content = {
         },
       ],
     },
+    research: {
+      title: "Исследовательские Проекты",
+      projects: [
+        {
+          title: "Поведение Потребителей на Цифровых Рынках",
+          description:
+            "Комплексный анализ моделей покупок в электронной коммерции и предпочтений цифровых потребителей с использованием техник машинного обучения.",
+          link: "#",
+        },
+        {
+          title: "Анализ Влияния Международной Торговли",
+          description:
+            "Исследование влияния торговой политики на развивающиеся рынки, сосредоточенное на экономических показателях и изменениях бизнес-среды.",
+          link: "#",
+        },
+        {
+          title: "Сегментация Рынка Устойчивых Продуктов",
+          description:
+            "Исследование сегментов потребителей, заинтересованных в устойчивых продуктах, анализ демографических и психографических факторов.",
+          link: "#",
+        },
+      ],
+    },
     contact: {
       title: "Свяжитесь со Мной",
       subtitle: "Не стесняйтесь обращаться по поводу сотрудничества или возможностей",
@@ -495,23 +449,15 @@ export default function ResumePage() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const [activeSection, setActiveSection] = useState("about")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
 
   const aboutRef = useRef<HTMLElement>(null)
   const experienceRef = useRef<HTMLElement>(null)
-  const researchesRef = useRef<HTMLElement>(null)
   const volunteerRef = useRef<HTMLElement>(null)
+  const researchRef = useRef<HTMLElement>(null)
   const contactRef = useRef<HTMLElement>(null)
 
   const t = content[language]
-
-  const languages = [
-    { code: "en", name: "English", flag: "🇺🇸" },
-    { code: "fr", name: "Français", flag: "🇫🇷" },
-    { code: "cs", name: "Čeština", flag: "🇨🇿" },
-    { code: "ru", name: "Русский", flag: "🇷🇺" },
-  ]
 
   // Theme initialization and management
   useEffect(() => {
@@ -575,25 +521,13 @@ export default function ResumePage() {
       { threshold: 0.3, rootMargin: "-100px 0px -50% 0px" },
     )
 
-    const sections = [aboutRef, experienceRef, researchesRef, volunteerRef, contactRef]
+    const sections = [aboutRef, experienceRef, volunteerRef, researchRef, contactRef]
     sections.forEach((ref) => {
       if (ref.current) observer.observe(ref.current)
     })
 
     return () => observer.disconnect()
   }, [])
-
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (isLanguageDropdownOpen) {
-        setIsLanguageDropdownOpen(false)
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [isLanguageDropdownOpen])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -619,12 +553,17 @@ export default function ResumePage() {
     }
   }
 
-  const selectLanguage = (langCode: "en" | "fr" | "cs" | "ru") => {
-    setLanguage(langCode)
-    setIsLanguageDropdownOpen(false)
+  const cycleLanguage = () => {
+    const languages: ("en" | "fr" | "cs" | "ru")[] = ["en", "fr", "cs", "ru"]
+    const currentIndex = languages.indexOf(language)
+    const nextIndex = (currentIndex + 1) % languages.length
+    setLanguage(languages[nextIndex])
   }
 
-  const currentLanguage = languages.find((lang) => lang.code === language)
+  const getLanguageDisplay = () => {
+    const displays = { en: "EN", fr: "FR", cs: "CS", ru: "RU" }
+    return displays[language]
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-gray-50 to-steel-50 dark:from-slate-900 dark:via-blue-gray-900/20 dark:to-slate-900 transition-colors duration-300">
@@ -666,57 +605,17 @@ export default function ResumePage() {
                 className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
                 title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
               >
-                {theme === "light" ? (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                    />
-                  </svg>
-                ) : (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                  </svg>
-                )}
+                {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
               </button>
 
-              {/* Language Dropdown */}
-              <div className="relative">
-                <button
-                  onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                  className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
-                >
-                  <Globe className="w-4 h-4" />
-                  <span className="text-sm font-medium">{currentLanguage?.flag}</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
-
-                {isLanguageDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-50">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => selectLanguage(lang.code as "en" | "fr" | "cs" | "ru")}
-                        className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center space-x-3 ${
-                          language === lang.code
-                            ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100"
-                            : "text-slate-700 dark:text-slate-300"
-                        }`}
-                      >
-                        <span>{lang.flag}</span>
-                        <span>{lang.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {/* Language Toggle */}
+              <button
+                onClick={cycleLanguage}
+                className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm font-medium">{getLanguageDisplay()}</span>
+              </button>
 
               {/* Mobile Menu Button */}
               <button
@@ -777,21 +676,11 @@ export default function ResumePage() {
                   />
                 </div>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-slate-600 via-blue-600 to-slate-700 bg-clip-text text-transparent">
-                  {t.about.name}
-                </span>
-              </h1>
+              <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">{t.about.name}</h1>
               <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">{t.about.role}</p>
-              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                 {t.about.bio}
               </p>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-slate-600 to-blue-600 text-white font-medium rounded-lg hover:from-slate-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                {t.about.ctaButton}
-              </button>
             </div>
           </div>
         </section>
@@ -833,14 +722,40 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Research Section */}
-        <section id="researches" ref={researchesRef} className="py-20 px-4 sm:px-6 lg:px-8">
+        {/* Volunteer Section */}
+        <section id="volunteer" ref={volunteerRef} className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">
-              {t.researches.title}
-            </h2>
+            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">{t.volunteer.title}</h2>
+            <div className="space-y-8">
+              {t.volunteer.activities.map((activity, index) => (
+                <div
+                  key={index}
+                  className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{activity.title}</h3>
+                      <p className="text-slate-600 dark:text-slate-400 font-medium">{activity.organization}</p>
+                    </div>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 mt-2 sm:mt-0">{activity.period}</span>
+                  </div>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{activity.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Research Section */}
+        <section
+          id="research"
+          ref={researchRef}
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-white/30 dark:bg-slate-800/30"
+        >
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">{t.research.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {t.researches.projects.map((project, index) => (
+              {t.research.projects.map((project, index) => (
                 <div
                   key={index}
                   className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
@@ -864,34 +779,6 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Volunteer Section */}
-        <section
-          id="volunteer"
-          ref={volunteerRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-white/30 dark:bg-slate-800/30"
-        >
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">{t.volunteer.title}</h2>
-            <div className="space-y-8">
-              {t.volunteer.activities.map((activity, index) => (
-                <div
-                  key={index}
-                  className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{activity.title}</h3>
-                      <p className="text-slate-600 dark:text-slate-400 font-medium">{activity.organization}</p>
-                    </div>
-                    <span className="text-sm text-slate-500 dark:text-slate-400 mt-2 sm:mt-0">{activity.period}</span>
-                  </div>
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{activity.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Contact Section */}
         <section id="contact" ref={contactRef} className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -903,7 +790,7 @@ export default function ResumePage() {
                 href={`mailto:${t.contact.email}`}
                 className="flex items-center space-x-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
               >
-                <GmailIcon className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
+                <Mail className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300">{t.contact.email}</span>
               </a>
 
@@ -913,7 +800,7 @@ export default function ResumePage() {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
               >
-                <LinkedInIcon className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
+                <Linkedin className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300">LinkedIn</span>
               </a>
 
@@ -923,7 +810,7 @@ export default function ResumePage() {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/30 hover:shadow-lg transition-shadow group"
               >
-                <MastodonIcon className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
+                <Users className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300">Mastodon</span>
               </a>
             </div>
@@ -932,7 +819,7 @@ export default function ResumePage() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-700/30 bg-white/30 dark:bg-slate-800/30">
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-700/30">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
             © 2024 {t.about.name}. Built with React & Next.js
