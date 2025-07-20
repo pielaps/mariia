@@ -3,12 +3,13 @@ import defaultConfig from "shadcn/ui/tailwind.config"
 
 const config: Config = {
   ...defaultConfig,
-  content: [...defaultConfig.content, "./pages/**/*.{js,ts,jsx,tsx,mdx}", "*.{js,ts,jsx,tsx,mdx}"],
+  content: [...defaultConfig.content, "./pages/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     ...defaultConfig.theme,
     extend: {
       ...defaultConfig.theme.extend.colors,
       colors: {
+        /* grey-blue palette */
         "blue-gray": {
           50: "#f8fafc",
           100: "#f1f5f9",
