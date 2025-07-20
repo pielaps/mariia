@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Globe, Sun, Moon, Menu, X, ExternalLink } from "lucide-react"
+import { Globe, Sun, Moon, Menu, X } from "lucide-react"
 
 // Language content
 const content = {
@@ -19,32 +19,39 @@ const content = {
     about: {
       title: "About Me",
       description:
-        "I am a dedicated International Economics and Business student with a passion for data-driven insights and market analysis. My academic background combined with extensive volunteer experience has equipped me with strong analytical skills and a deep understanding of global economic trends.",
+        "Hello!! I am a double-degree student at Ural Federal University and KEDGE Business School in France. I am passionate about data analysis and market research. I look forward to building my career in these fields. I am not afraid of numbers and difficult challenges. I have experience using Python (pandas, numpy) for data analysis, Excel and Google Sheets for reporting, and Python or Tableau for visualization.\n\nI bring beauty, brains, and talent to everything I do.",
       ctaButton: "Contact Me",
     },
     experience: {
       title: "Work Experience",
       jobs: [
         {
-          title: "Business Analysis Intern",
-          company: "Global Markets Ltd.",
-          period: "2023 - Present",
+          title: "Marketing Intern",
+          company: "SMARTGEN Wealth Management",
+          period: "Mar 2025 - Present",
           description: [
-            "Conducted market research and competitive analysis for emerging markets",
-            "Developed data visualization dashboards using Excel and Power BI",
-            "Assisted in preparing quarterly business reports and presentations",
-            "Collaborated with cross-functional teams on strategic planning initiatives",
+            "Analyzed 30 competitors in wealth management and created a strategic reference guide for the team",
+            "Developed a Telegram bot in Python that automates real-time monitoring of competitor updates (reducing daily manual tracking time by up to 4 hours for the team)",
           ],
         },
         {
-          title: "Research Assistant",
-          company: "University Economics Department",
-          period: "2022 - 2023",
+          title: "Project Administrator",
+          company: "Unilever",
+          period: "Mar - May 2024",
           description: [
-            "Supported faculty research on international trade patterns",
-            "Collected and analyzed economic data from various databases",
-            "Prepared literature reviews and research summaries",
-            "Assisted in organizing academic conferences and seminars",
+            "Worked on a corporate culture development project",
+            'Developed a themed quiz "UniQuiz" about the history of the "Kalina" factory and Unilever',
+            "The quiz was held for 30 children of employees and received positive feedback as part of a corporate event",
+          ],
+        },
+        {
+          title: "Assistant",
+          company: "Haensch",
+          period: "Nov - Dec 2023",
+          description: [
+            "Researched certification rules for 40 industry-country pairs for internal market analysis",
+            "Conducted certification research for 4 countries across multiple industries",
+            "The results were included in a product certification guide developed in collaboration with the Russian Export Center",
           ],
         },
       ],
@@ -53,22 +60,31 @@ const content = {
       title: "Research Projects",
       projects: [
         {
-          title: "Impact of Digital Trade on Emerging Economies",
+          title: "Factors Influencing Taxi Fare Prices",
           description:
-            "Comprehensive analysis of how digital transformation affects trade patterns in developing countries, focusing on e-commerce growth and digital payment systems.",
-          period: "2023",
+            "Conducted a full-scale research project using original survey data collected from 116 university students. Performed statistical and econometric analysis to identify key drivers of taxi pricing. Used tools such as regression modeling and correlation analysis to quantify the impact of each factor.",
+          period: "2024",
         },
         {
-          title: "Market Integration in Central European Countries",
+          title: "Analysis of consumer behavior in the mobile communication market on the example of Tele2",
           description:
-            "Study examining the economic integration process and its effects on market efficiency in Central European nations post-EU accession.",
-          period: "2022",
+            "Analyzed tariff preferences of customers using a real mobile network operator as a case study. Built consumer indifference curves for different population segments and identified optimal tariff plans. Provided recommendations that demonstrated up to 40% cost reduction for certain user groups. Published in 2024 as part of a research collection on digital economy and consumption behavior.",
+          period: "2024",
         },
         {
-          title: "Consumer Behavior Analysis in Cross-Border E-commerce",
-          description:
-            "Research project analyzing consumer preferences and purchasing patterns in international online marketplaces.",
-          period: "2022",
+          title: "Key changes in accounting for material and production inventory",
+          description: "",
+          period: "2024",
+        },
+        {
+          title: "Current changes in federal accounting standards: necessity in times of change",
+          description: "",
+          period: "2025",
+        },
+        {
+          title: "Dynamics of economic cooperation between China and Russia under economic restrictions",
+          description: "",
+          period: "2025",
         },
       ],
     },
@@ -76,36 +92,23 @@ const content = {
       title: "Volunteer Experience",
       activities: [
         {
-          title: "Economic Education Volunteer",
-          organization: "Youth Economics Initiative",
-          period: "2021 - Present",
+          title: "Guide",
+          organization: "INNOPROM",
+          period: "Jul 2023",
           description: [
-            "Developed and delivered economics workshops for high school students",
-            "Created educational materials on financial literacy and market economics",
-            "Mentored students interested in pursuing economics and business studies",
-            "Organized economics competitions and academic events",
+            "Led guided tours for international guests in both Russian and English, coordinated visitor flow, and provided on-site logistical support",
+            "Represented the host country to foreign delegations and ensured a smooth and informative visitor experience",
+            "Personally conducted a VIP tour for the delegation from Zimbabwe, contributing to the professional image of the event and its international outreach",
           ],
         },
         {
-          title: "Data Analysis Volunteer",
-          organization: "Local NGO Development Center",
-          period: "2020 - 2022",
+          title: "Volunteer Coordinator",
+          organization: "International University Sports Festival Committee",
+          period: "Jul - Sep 2023",
           description: [
-            "Analyzed survey data to support community development projects",
-            "Created reports on local economic conditions and social indicators",
-            "Assisted in grant application research and data collection",
-            "Supported impact assessment studies for various programs",
-          ],
-        },
-        {
-          title: "Student Mentor",
-          organization: "University International Student Services",
-          period: "2019 - 2021",
-          description: [
-            "Guided international students through academic and cultural adaptation",
-            "Organized orientation sessions and cultural exchange events",
-            "Provided academic support and study group coordination",
-            "Facilitated communication between students and university services",
+            "Assisted foreign athletes and delegation members with accommodation, local transportation, and orientation throughout the city",
+            "Served as a cultural liaison between international participants and local organizers, ensuring smooth communication and comfort during the event",
+            "Helped maintain the festival's reputation for hospitality and operational excellence in a high-pressure international setting",
           ],
         },
       ],
@@ -114,9 +117,9 @@ const content = {
       title: "Contact Me",
       description:
         "I'm always interested in discussing new opportunities in business analysis, market research, or data analysis. Feel free to reach out!",
-      email: "mariia.priakhina@email.com",
-      linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
+      email: "mariiapriakhina@gmail.com",
+      linkedin: "https://www.linkedin.com/in/mariiapriakhina/",
+      phone: "+33759314454",
     },
   },
   fr: {
@@ -130,32 +133,39 @@ const content = {
     about: {
       title: "À propos de moi",
       description:
-        "Je suis une étudiante dévouée en Économie Internationale et Commerce avec une passion pour les insights basés sur les données et l'analyse de marché. Mon parcours académique combiné à une vaste expérience bénévole m'a dotée de solides compétences analytiques et d'une compréhension approfondie des tendances économiques mondiales.",
+        "Hello!! Je suis une étudiante en double diplôme à l'Université fédérale de l'Oural et à KEDGE Business School en France. Je suis passionnée par l'analyse de données et les études de marché. J'ai hâte de construire ma carrière dans ces domaines. Je n'ai pas peur des chiffres et des défis difficiles. J'ai de l'expérience dans l'utilisation de Python (pandas, numpy) pour l'analyse de données, Excel et Google Sheets pour le reporting, et Python ou Tableau pour la visualisation.\n\nJ'apporte beauté, intelligence et talent à tout ce que je fais.",
       ctaButton: "Me contacter",
     },
     experience: {
       title: "Expérience professionnelle",
       jobs: [
         {
-          title: "Stagiaire en Analyse d'Affaires",
-          company: "Global Markets Ltd.",
-          period: "2023 - Présent",
+          title: "Stagiaire en marketing",
+          company: "SMARTGEN Wealth Management",
+          period: "Mars 2025 - Présent",
           description: [
-            "Réalisation d'études de marché et d'analyses concurrentielles pour les marchés émergents",
-            "Développement de tableaux de bord de visualisation de données avec Excel et Power BI",
-            "Assistance dans la préparation de rapports d'affaires trimestriels et de présentations",
-            "Collaboration avec des équipes transversales sur des initiatives de planification stratégique",
+            "Analyse de 30 concurrents en gestion de patrimoine et création d'un guide de référence stratégique pour l'équipe",
+            "Développement d'un bot Telegram en Python qui automatise la surveillance en temps réel des mises à jour des concurrents (réduisant le temps de suivi manuel quotidien jusqu'à 4 heures pour l'équipe)",
           ],
         },
         {
-          title: "Assistant de Recherche",
-          company: "Département d'Économie Universitaire",
-          period: "2022 - 2023",
+          title: "Administrateur de projet",
+          company: "Unilever",
+          period: "Mars - Mai 2024",
           description: [
-            "Soutien à la recherche facultaire sur les modèles de commerce international",
-            "Collecte et analyse de données économiques de diverses bases de données",
-            "Préparation de revues de littérature et de résumés de recherche",
-            "Assistance dans l'organisation de conférences académiques et de séminaires",
+            "Travail sur un projet de développement de la culture d'entreprise",
+            "Développement d'un quiz thématique \"UniQuiz\" sur l'histoire de l'usine \"Kalina\" et d'Unilever",
+            "Le quiz a été organisé pour 30 enfants d'employés et a reçu des commentaires positifs dans le cadre d'un événement d'entreprise",
+          ],
+        },
+        {
+          title: "Assistant",
+          company: "Haensch",
+          period: "Nov - Déc 2023",
+          description: [
+            "Recherche des règles de certification pour 40 paires industrie-pays pour l'analyse du marché interne",
+            "Réalisation de recherches sur la certification pour 4 pays dans plusieurs secteurs",
+            "Les résultats ont été inclus dans un guide de certification des produits développé en collaboration avec le Centre d'exportation russe",
           ],
         },
       ],
@@ -164,22 +174,33 @@ const content = {
       title: "Projets de recherche",
       projects: [
         {
-          title: "Impact du Commerce Numérique sur les Économies Émergentes",
+          title: "Facteurs influençant les prix des courses en taxi",
           description:
-            "Analyse complète de l'impact de la transformation numérique sur les modèles commerciaux dans les pays en développement, en se concentrant sur la croissance du e-commerce et les systèmes de paiement numériques.",
-          period: "2023",
+            "Réalisation d'un projet de recherche à grande échelle utilisant des données d'enquête originales collectées auprès de 116 étudiants universitaires. Réalisation d'analyses statistiques et économétriques pour identifier les principaux moteurs de la tarification des taxis. Utilisation d'outils tels que la modélisation de régression et l'analyse de corrélation pour quantifier l'impact de chaque facteur.",
+          period: "2024",
         },
         {
-          title: "Intégration des Marchés dans les Pays d'Europe Centrale",
+          title:
+            "Analyse du comportement des consommateurs sur le marché de la communication mobile sur l'exemple de Tele2",
           description:
-            "Étude examinant le processus d'intégration économique et ses effets sur l'efficacité du marché dans les nations d'Europe centrale post-adhésion à l'UE.",
-          period: "2022",
+            "Analyse des préférences tarifaires des clients en utilisant un véritable opérateur de réseau mobile comme étude de cas. Construction de courbes d'indifférence des consommateurs pour différents segments de population et identification des plans tarifaires optimaux. Fourniture de recommandations qui ont démontré une réduction des coûts allant jusqu'à 40 % pour certains groupes d'utilisateurs. Publication en 2024 dans le cadre d'un recueil de recherches sur l'économie numérique et le comportement de consommation.",
+          period: "2024",
         },
         {
-          title: "Analyse du Comportement des Consommateurs dans le E-commerce Transfrontalier",
-          description:
-            "Projet de recherche analysant les préférences des consommateurs et les modèles d'achat dans les marchés en ligne internationaux.",
-          period: "2022",
+          title: "Principaux changements dans la comptabilisation des stocks de matières et de production",
+          description: "",
+          period: "2024",
+        },
+        {
+          title: "Changements actuels dans les normes comptables fédérales : nécessité en période de changement",
+          description: "",
+          period: "2025",
+        },
+        {
+          title:
+            "Dynamique de la coopération économique entre la Chine et la Russie dans le cadre de restrictions économiques",
+          description: "",
+          period: "2025",
         },
       ],
     },
@@ -187,36 +208,23 @@ const content = {
       title: "Expérience bénévole",
       activities: [
         {
-          title: "Bénévole en Éducation Économique",
-          organization: "Initiative Économique Jeunesse",
-          period: "2021 - Présent",
+          title: "Guide",
+          organization: "INNOPROM",
+          period: "Juil 2023",
           description: [
-            "Développement et animation d'ateliers d'économie pour lycéens",
-            "Création de matériel éducatif sur la littératie financière et l'économie de marché",
-            "Mentorat d'étudiants intéressés par les études d'économie et de commerce",
-            "Organisation de concours d'économie et d'événements académiques",
+            "Animation de visites guidées pour des invités internationaux en russe et en anglais, coordination du flux de visiteurs et fourniture d'un soutien logistique sur place",
+            "Représentation du pays hôte auprès des délégations étrangères et garantie d'une expérience de visite fluide et informative",
+            "Réalisation personnelle d'une visite VIP pour la délégation du Zimbabwe, contribuant à l'image professionnelle de l'événement et à son rayonnement international",
           ],
         },
         {
-          title: "Bénévole en Analyse de Données",
-          organization: "Centre de Développement ONG Local",
-          period: "2020 - 2022",
+          title: "Coordinateur des bénévoles",
+          organization: "Comité du Festival international du sport universitaire",
+          period: "Juil - Sep 2023",
           description: [
-            "Analyse de données d'enquête pour soutenir les projets de développement communautaire",
-            "Création de rapports sur les conditions économiques locales et les indicateurs sociaux",
-            "Assistance dans la recherche de demandes de subventions et la collecte de données",
-            "Soutien aux études d'évaluation d'impact pour divers programmes",
-          ],
-        },
-        {
-          title: "Mentor Étudiant",
-          organization: "Services aux Étudiants Internationaux de l'Université",
-          period: "2019 - 2021",
-          description: [
-            "Accompagnement des étudiants internationaux dans l'adaptation académique et culturelle",
-            "Organisation de sessions d'orientation et d'événements d'échange culturel",
-            "Fourniture de soutien académique et coordination de groupes d'étude",
-            "Facilitation de la communication entre étudiants et services universitaires",
+            "Aide aux athlètes étrangers et aux membres des délégations pour l'hébergement, le transport local et l'orientation dans la ville",
+            "Liaison culturelle entre les participants internationaux et les organisateurs locaux, assurant une communication fluide et le confort pendant l'événement",
+            "Aide au maintien de la réputation du festival en matière d'hospitalité et d'excellence opérationnelle dans un contexte international à forte pression",
           ],
         },
       ],
@@ -225,120 +233,9 @@ const content = {
       title: "Me contacter",
       description:
         "Je suis toujours intéressée à discuter de nouvelles opportunités en analyse d'affaires, recherche de marché ou analyse de données. N'hésitez pas à me contacter !",
-      email: "mariia.priakhina@email.com",
-      linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
-    },
-  },
-  cs: {
-    nav: {
-      about: "O mně",
-      experience: "Zkušenosti",
-      researches: "Výzkumy",
-      volunteer: "Dobrovolnictví",
-      contact: "Kontakt",
-    },
-    about: {
-      title: "O mně",
-      description:
-        "Jsem oddaná studentka Mezinárodní ekonomie a podnikání s vášní pro poznatky založené na datech a analýzu trhu. Mé akademické zázemí v kombinaci s rozsáhlými dobrovolnickými zkušenostmi mě vybavilo silnými analytickými dovednostmi a hlubokým porozuměním globálních ekonomických trendů.",
-      ctaButton: "Kontaktujte mě",
-    },
-    experience: {
-      title: "Pracovní zkušenosti",
-      jobs: [
-        {
-          title: "Stážista obchodní analýzy",
-          company: "Global Markets Ltd.",
-          period: "2023 - současnost",
-          description: [
-            "Provedení průzkumu trhu a konkurenční analýzy pro rozvíjející se trhy",
-            "Vývoj dashboardů pro vizualizaci dat pomocí Excel a Power BI",
-            "Asistence při přípravě čtvrtletních obchodních zpráv a prezentací",
-            "Spolupráce s mezifunkčními týmy na iniciativách strategického plánování",
-          ],
-        },
-        {
-          title: "Výzkumný asistent",
-          company: "Univerzitní katedra ekonomie",
-          period: "2022 - 2023",
-          description: [
-            "Podpora fakultního výzkumu vzorců mezinárodního obchodu",
-            "Sběr a analýza ekonomických dat z různých databází",
-            "Příprava literárních rešerší a výzkumných shrnutí",
-            "Asistence při organizaci akademických konferencí a seminářů",
-          ],
-        },
-      ],
-    },
-    researches: {
-      title: "Výzkumné projekty",
-      projects: [
-        {
-          title: "Dopad digitálního obchodu na rozvíjející se ekonomiky",
-          description:
-            "Komplexní analýza toho, jak digitální transformace ovlivňuje obchodní vzorce v rozvojových zemích, se zaměřením na růst e-commerce a systémy digitálních plateb.",
-          period: "2023",
-        },
-        {
-          title: "Tržní integrace ve středoevropských zemích",
-          description:
-            "Studie zkoumající proces ekonomické integrace a jeho účinky na tržní efektivitu ve středoevropských národech po vstupu do EU.",
-          period: "2022",
-        },
-        {
-          title: "Analýza chování spotřebitelů v přeshraničním e-commerce",
-          description:
-            "Výzkumný projekt analyzující preference spotřebitelů a nákupní vzorce na mezinárodních online tržištích.",
-          period: "2022",
-        },
-      ],
-    },
-    volunteer: {
-      title: "Dobrovolnické zkušenosti",
-      activities: [
-        {
-          title: "Dobrovolník ekonomického vzdělávání",
-          organization: "Iniciativa mládežnické ekonomie",
-          period: "2021 - současnost",
-          description: [
-            "Vývoj a vedení ekonomických workshopů pro středoškolské studenty",
-            "Vytváření vzdělávacích materiálů o finanční gramotnosti a tržní ekonomii",
-            "Mentoring studentů zajímajících se o studium ekonomie a podnikání",
-            "Organizace ekonomických soutěží a akademických akcí",
-          ],
-        },
-        {
-          title: "Dobrovolník analýzy dat",
-          organization: "Místní centrum rozvoje NGO",
-          period: "2020 - 2022",
-          description: [
-            "Analýza dat z průzkumů na podporu projektů komunitního rozvoje",
-            "Vytváření zpráv o místních ekonomických podmínkách a sociálních ukazatelích",
-            "Asistence při výzkumu grantových žádostí a sběru dat",
-            "Podpora studií hodnocení dopadu pro různé programy",
-          ],
-        },
-        {
-          title: "Studentský mentor",
-          organization: "Univerzitní služby pro mezinárodní studenty",
-          period: "2019 - 2021",
-          description: [
-            "Vedení mezinárodních studentů při akademické a kulturní adaptaci",
-            "Organizace orientačních sezení a akcí kulturní výměny",
-            "Poskytování akademické podpory a koordinace studijních skupin",
-            "Usnadnění komunikace mezi studenty a univerzitními službami",
-          ],
-        },
-      ],
-    },
-    contact: {
-      title: "Kontaktujte mě",
-      description:
-        "Vždy mám zájem diskutovat o nových příležitostech v obchodní analýze, průzkumu trhu nebo analýze dat. Neváhejte se ozvat!",
-      email: "mariia.priakhina@email.com",
-      linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
+      email: "mariiapriakhina@gmail.com",
+      linkedin: "https://www.linkedin.com/in/mariiapriakhina/",
+      phone: "+33759314454",
     },
   },
   ru: {
@@ -352,32 +249,39 @@ const content = {
     about: {
       title: "Обо мне",
       description:
-        "Я преданная студентка международной экономики и бизнеса с страстью к аналитическим выводам на основе данных и анализу рынка. Мое академическое образование в сочетании с обширным волонтерским опытом дало мне сильные аналитические навыки и глубокое понимание глобальных экономических тенденций.",
+        "Привет!! Я студентка двойного диплома Уральского федерального университета и KEDGE Business School во Франции. Я увлечена анализом данных и исследованиями рынка. Я с нетерпением жду возможности построить свою карьеру в этих областях. Я не боюсь цифр и сложных задач. У меня есть опыт использования Python (pandas, numpy) для анализа данных, Excel и Google Sheets для отчетности, а также Python или Tableau для визуализации.\n\nЯ привношу красоту, ум и талант во все, что делаю.",
       ctaButton: "Связаться со мной",
     },
     experience: {
       title: "Опыт работы",
       jobs: [
         {
-          title: "Стажер по бизнес-анализу",
-          company: "Global Markets Ltd.",
-          period: "2023 - настоящее время",
+          title: "Стажер по маркетингу",
+          company: "SMARTGEN Wealth Management",
+          period: "Март 2025 - настоящее время",
           description: [
-            "Проведение исследований рынка и конкурентного анализа для развивающихся рынков",
-            "Разработка дашбордов визуализации данных с использованием Excel и Power BI",
-            "Помощь в подготовке квартальных бизнес-отчетов и презентаций",
-            "Сотрудничество с межфункциональными командами по инициативам стратегического планирования",
+            "Проанализировал 30 конкурентов в сфере управления капиталом и создал стратегическое справочное руководство для команды",
+            "Разработал Telegram-бот на Python, который автоматизирует мониторинг обновлений конкурентов в режиме реального времени (сокращение ежедневного времени ручного отслеживания до 4 часов для команды)",
           ],
         },
         {
-          title: "Научный ассистент",
-          company: "Университетский факультет экономики",
-          period: "2022 - 2023",
+          title: "Администратор проекта",
+          company: "Unilever",
+          period: "Март - Май 2024",
           description: [
-            "Поддержка факультетских исследований моделей международной торговли",
-            "Сбор и анализ экономических данных из различных баз данных",
-            "Подготовка литературных обзоров и исследовательских резюме",
-            "Помощь в организации академических конференций и семинаров",
+            "Работал над проектом развития корпоративной культуры",
+            'Разработал тематическую викторину "UniQuiz" об истории фабрики "Калина" и Unilever',
+            "Викторина была проведена для 30 детей сотрудников и получила положительные отзывы в рамках корпоративного мероприятия",
+          ],
+        },
+        {
+          title: "Ассистент",
+          company: "Haensch",
+          period: "Ноябрь - Декабрь 2023",
+          description: [
+            "Исследовал правила сертификации для 40 пар отрасль-страна для внутреннего анализа рынка",
+            "Провел исследование сертификации для 4 стран по нескольким отраслям",
+            "Результаты были включены в руководство по сертификации продукции, разработанное в сотрудничестве с Российским экспортным центром",
           ],
         },
       ],
@@ -386,22 +290,31 @@ const content = {
       title: "Исследовательские проекты",
       projects: [
         {
-          title: "Влияние цифровой торговли на развивающиеся экономики",
+          title: "Факторы, влияющие на цены на такси",
           description:
-            "Комплексный анализ того, как цифровая трансформация влияет на торговые модели в развивающихся странах, с акцентом на рост электронной коммерции и системы цифровых платежей.",
-          period: "2023",
+            "Провел полномасштабный исследовательский проект с использованием оригинальных данных опроса, собранных у 116 студентов университета. Провел статистический и эконометрический анализ для выявления ключевых факторов, определяющих цены на такси. Использовал такие инструменты, как регрессионное моделирование и корреляционный анализ, для количественной оценки влияния каждого фактора.",
+          period: "2024",
         },
         {
-          title: "Рыночная интеграция в странах Центральной Европы",
+          title: "Анализ потребительского поведения на рынке мобильной связи на примере Tele2",
           description:
-            "Исследование, изучающее процесс экономической интеграции и его влияние на эффективность рынка в центральноевропейских странах после вступления в ЕС.",
-          period: "2022",
+            "Проанализировал тарифные предпочтения клиентов, используя в качестве примера реального оператора мобильной связи. Построил кривые безразличия потребителей для различных сегментов населения и определил оптимальные тарифные планы. Предоставил рекомендации, которые продемонстрировали снижение затрат до 40% для определенных групп пользователей. Опубликовано в 2024 году в рамках сборника исследований по цифровой экономике и потребительскому поведению.",
+          period: "2024",
         },
         {
-          title: "Анализ поведения потребителей в трансграничной электронной коммерции",
-          description:
-            "Исследовательский проект, анализирующий предпочтения потребителей и модели покупок на международных онлайн-рынках.",
-          period: "2022",
+          title: "Ключевые изменения в учете материально-производственных запасов",
+          description: "",
+          period: "2024",
+        },
+        {
+          title: "Текущие изменения в федеральных стандартах бухгалтерского учета: необходимость во времена перемен",
+          description: "",
+          period: "2025",
+        },
+        {
+          title: "Динамика экономического сотрудничества между Китаем и Россией в условиях экономических ограничений",
+          description: "",
+          period: "2025",
         },
       ],
     },
@@ -409,36 +322,23 @@ const content = {
       title: "Волонтерский опыт",
       activities: [
         {
-          title: "Волонтер экономического образования",
-          organization: "Инициатива молодежной экономики",
-          period: "2021 - настоящее время",
+          title: "Гид",
+          organization: "ИННОПРОМ",
+          period: "Июль 2023",
           description: [
-            "Разработка и проведение экономических семинаров для старшеклассников",
-            "Создание образовательных материалов по финансовой грамотности и рыночной экономике",
-            "Наставничество студентов, заинтересованных в изучении экономики и бизнеса",
-            "Организация экономических конкурсов и академических мероприятий",
+            "Проводил экскурсии для иностранных гостей на русском и английском языках, координировал поток посетителей и оказывал логистическую поддержку на месте",
+            "Представлял принимающую страну перед иностранными делегациями и обеспечивал беспрепятственный и информативный опыт посещения",
+            "Лично провел VIP-тур для делегации из Зимбабве, что способствовало профессиональному имиджу мероприятия и его международному охвату",
           ],
         },
         {
-          title: "Волонтер анализа данных",
-          organization: "Местный центр развития НПО",
-          period: "2020 - 2022",
+          title: "Координатор волонтеров",
+          organization: "Комитет Международного фестиваля университетского спорта",
+          period: "Июль - Сентябрь 2023",
           description: [
-            "Анализ данных опросов для поддержки проектов развития сообщества",
-            "Создание отчетов о местных экономических условиях и социальных показателях",
-            "Помощь в исследовании грантовых заявок и сборе данных",
-            "Поддержка исследований оценки воздействия для различных программ",
-          ],
-        },
-        {
-          title: "Студенческий наставник",
-          organization: "Университетские services для международных студентов",
-          period: "2019 - 2021",
-          description: [
-            "Руководство международными студентами в академической и культурной адаптации",
-            "Организация ориентационных сессий и мероприятий культурного обмена",
-            "Предоставление академической поддержки и координация учебных групп",
-            "Содействие общению между студентами и университетскими службами",
+            "Помогал иностранным спортсменам и членам делегаций с размещением, местным транспортом и ориентацией по городу",
+            "Выступал в качестве культурного посредника между международными участниками и местными организаторами, обеспечивая беспрепятственное общение и комфорт во время мероприятия",
+            "Помогал поддерживать репутацию фестиваля за гостеприимство и операционное совершенство в международной среде с высоким давлением",
           ],
         },
       ],
@@ -447,9 +347,9 @@ const content = {
       title: "Связаться со мной",
       description:
         "Я всегда заинтересована в обсуждении новых возможностей в бизнес-анализе, исследовании рынка или анализе данных. Не стесняйтесь обращаться!",
-      email: "mariia.priakhina@email.com",
-      linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
+      email: "mariiapriakhina@gmail.com",
+      linkedin: "https://www.linkedin.com/in/mariiapriakhina/",
+      phone: "+33759314454",
     },
   },
 }
@@ -473,31 +373,41 @@ const LinkedInIcon = () => (
   </svg>
 )
 
-const MastodonIcon = () => (
+const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
     <path
-      d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
-      fill="#6364FF"
+      d="M12.04 2C7.34 2 3.58 5.76 3.58 10.46c0 1.5.4 2.92 1.18 4.17L2 22l6.3-1.65c1.18.64 2.51 1 3.74 1 4.7 0 8.46-3.76 8.46-8.46S16.74 2 12.04 2zm.01 1.67c4.02 0 7.29 3.27 7.29 7.29 0 4.02-3.27 7.29-7.29 7.29-1.25 0-2.43-.32-3.47-.88l-.25-.14-2.65.69.7-2.58-.17-.27c-.6-.96-.92-2.07-.92-3.22 0-4.02 3.27-7.29 7.29-7.29zm-2.3 4.5c-.13 0-.26.05-.36.15-.1.1-.15.23-.15.36v2.3c0 .13.05.26.15.36.1.1.23.15.36.15h.82c.13 0 .26-.05.36-.15.1-.1.15-.23.15-.36V9.03c0-.13-.05-.26-.15-.36-.1-.1-.23-.15-.36-.15h-.82zm3.65 0c-.13 0-.26.05-.36.15-.1.1-.15.23-.15.36v2.3c0 .13.05.26.15.36.1.1.23.15.36.15h.82c.13 0 .26-.05.36-.15.1-.1.15-.23.15-.36V9.03c0-.13-.05-.26-.15-.36-.1-.1-.23-.15-.36-.15h-.82z"
+      fill="#25D366"
     />
   </svg>
 )
 
 export default function ResumePage() {
-  const [language, setLanguage] = useState<"en" | "fr" | "cs" | "ru">("en")
+  const [language, setLanguage] = useState<"en" | "fr" | "ru">("en")
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const [activeSection, setActiveSection] = useState("about")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const lastScrollY = useRef(0)
 
   const languages = [
     { code: "en" as const, name: "English", flag: "🇺🇸" },
     { code: "fr" as const, name: "Français", flag: "🇫🇷" },
-    { code: "cs" as const, name: "Čeština", flag: "🇨🇿" },
     { code: "ru" as const, name: "Русский", flag: "🇷🇺" },
   ]
 
   const t = content[language]
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Theme detection and management
   useEffect(() => {
@@ -596,6 +506,11 @@ export default function ResumePage() {
 
             {/* Controls */}
             <div className="flex items-center space-x-4">
+              {/* Theme Toggle */}
+              <Button variant="ghost" size="sm" onClick={toggleTheme} className="p-2">
+                {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              </Button>
+
               {/* Language Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -610,17 +525,12 @@ export default function ResumePage() {
                       onClick={() => setLanguage(lang.code)}
                       className={language === lang.code ? "bg-slate-100 dark:bg-slate-800" : ""}
                     >
-                      <span className="mr-2">{lang.flag}</span>
+                      {!isMobile && <span className="mr-2">{lang.flag}</span>}
                       {lang.name}
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-
-              {/* Theme Toggle */}
-              <Button variant="ghost" size="sm" onClick={toggleTheme} className="p-2">
-                {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-              </Button>
 
               {/* Mobile Menu Toggle */}
               <Button
@@ -662,33 +572,35 @@ export default function ResumePage() {
         {/* About Section */}
         <section id="about" className="py-20 bg-transparent">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-8">
+            <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:items-center md:gap-12">
+              <div className="mb-8 md:mb-0 md:mr-8 flex-shrink-0">
                 <img
-                  src="/placeholder-user.jpg"
+                  src="/profile-photo.jpg"
                   alt="Mariia Priakhina"
-                  className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white dark:border-slate-700 shadow-lg"
+                  className="w-64 h-64 rounded-2xl mx-auto object-cover border-8 border-white dark:border-slate-700 shadow-lg"
                 />
+              </div>
+              <div className="text-center md:text-left flex-grow">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
                   <span className="bg-gradient-to-r from-slate-600 to-blue-600 dark:from-slate-300 dark:to-blue-400 bg-clip-text text-transparent">
                     Mariia Priakhina
                   </span>
                 </h2>
-                <p className="text-xl text-slate-600 dark:text-slate-300 mb-2">Business Analyst & Market Researcher</p>
+                <p className="text-xl text-slate-600 dark:text-slate-300 mb-2">Business Analyst | Market Researcher</p>
                 <p className="text-lg text-slate-500 dark:text-slate-400">
                   International Economics and Business Student
                 </p>
+                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 mt-8 max-w-3xl mx-auto md:mx-0">
+                  {t.about.description}
+                </p>
+                <Button
+                  onClick={scrollToContact}
+                  size="lg"
+                  className="bg-gradient-to-r from-slate-600 to-blue-600 hover:from-slate-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  {t.about.ctaButton}
+                </Button>
               </div>
-              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-3xl mx-auto">
-                {t.about.description}
-              </p>
-              <Button
-                onClick={scrollToContact}
-                size="lg"
-                className="bg-gradient-to-r from-slate-600 to-blue-600 hover:from-slate-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                {t.about.ctaButton}
-              </Button>
             </div>
           </div>
         </section>
@@ -812,7 +724,16 @@ export default function ResumePage() {
                 {t.contact.title}
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">{t.contact.description}</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <div className="flex flex-col items-center justify-center space-y-6">
+                <a
+                  href={t.contact.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  <LinkedInIcon />
+                  <span>LinkedIn</span>
+                </a>
                 <a
                   href={`mailto:${t.contact.email}`}
                   className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -821,24 +742,13 @@ export default function ResumePage() {
                   <span>{t.contact.email}</span>
                 </a>
                 <a
-                  href={`https://${t.contact.linkedin}`}
+                  href={`https://wa.me/${t.contact.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
-                  <LinkedInIcon />
-                  <span>LinkedIn</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-                <a
-                  href={`https://mastodon.social/${t.contact.mastodon}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  <MastodonIcon />
-                  <span>Mastodon</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <WhatsAppIcon />
+                  <span>{t.contact.phone}</span>
                 </a>
               </div>
             </div>
@@ -847,9 +757,9 @@ export default function ResumePage() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 bg-gradient-to-br from-slate-100 to-blue-100 dark:from-slate-800 dark:to-slate-700 border-t border-slate-200 dark:border-slate-700">
+      <footer className="py-8 bg-transparent">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-600 dark:text-slate-400">© 2024 Mariia Priakhina. All rights reserved.</p>
+          <p className="text-slate-600 dark:text-slate-400">© 2025 Mariia Priakhina. All rights reserved.</p>
         </div>
       </footer>
     </div>
