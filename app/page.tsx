@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ChevronUp, ChevronDown, Globe } from "lucide-react"
+import { ChevronUp, ChevronDown, Globe, ChevronLeft, ChevronRight } from "lucide-react"
 
 // Official Brand Icons Components
 const GmailIcon = ({ className }: { className?: string }) => (
@@ -22,11 +22,11 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const MastodonIcon = ({ className }: { className?: string }) => (
+const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
-      d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
-      fill="#6364FF"
+      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.064 3.488"
+      fill="#25D366"
     />
   </svg>
 )
@@ -44,8 +44,8 @@ const content = {
     about: {
       title: "About Me",
       name: "Mariia Priakhina",
-      role: "Business Analyst | Market Researcher | Data Analyst",
-      bio: "International Economics and Business student with a passion for data-driven decision making and market analysis. I combine analytical thinking with business acumen to uncover insights that drive strategic growth and solve complex business challenges.",
+      role: "Business Analyst | Market Researcher",
+      bio: "Hello!! I am a double-degree student at Ural Federal University and KEDGE Business School in France. I am passionate about data analysis and market research. I look forward to building my career in these fields. I am not afraid of numbers and difficult challenges. I have experience using Python (pandas, numpy) for data analysis, Excel and Google Sheets for reporting, and Python or Tableau for visualization.\n\nI bring beauty, brains, and talent to everything I do.",
       ctaButton: "Contact Me",
     },
     experience: {
@@ -107,6 +107,18 @@ const content = {
             "Research on consumer segments interested in sustainable products, analyzing demographic and psychographic factors.",
           link: "#",
         },
+        {
+          title: "Financial Technology Adoption Patterns",
+          description:
+            "Analysis of fintech adoption rates across different demographics and geographic regions, examining barriers and drivers.",
+          link: "#",
+        },
+        {
+          title: "Social Media Marketing Effectiveness",
+          description:
+            "Comprehensive study on ROI measurement and effectiveness of social media marketing campaigns across various industries.",
+          link: "#",
+        },
       ],
     },
     volunteer: {
@@ -140,7 +152,7 @@ const content = {
       subtitle: "Feel free to reach out for collaborations or opportunities",
       email: "mariia.priakhina@email.com",
       linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
+      whatsapp: "+33759314454",
     },
   },
   fr: {
@@ -154,8 +166,8 @@ const content = {
     about: {
       title: "À Propos de Moi",
       name: "Mariia Priakhina",
-      role: "Analyste d'Affaires | Chercheuse de Marché | Analyste de Données",
-      bio: "Étudiante en Économie Internationale et Commerce avec une passion pour la prise de décision basée sur les données et l'analyse de marché. Je combine la pensée analytique avec l'acumen commercial pour découvrir des insights qui stimulent la croissance stratégique et résolvent des défis commerciaux complexes.",
+      role: "Analyste d'Affaires | Chercheuse de Marché",
+      bio: "Salut!! Je suis étudiante en double diplôme à l'Université Fédérale de l'Oural et à KEDGE Business School en France. Je suis passionnée par l'analyse de données et la recherche de marché. J'ai hâte de construire ma carrière dans ces domaines. Je n'ai pas peur des chiffres et des défis difficiles. J'ai de l'expérience avec Python (pandas, numpy) pour l'analyse de données, Excel et Google Sheets pour les rapports, et Python ou Tableau pour la visualisation.\n\nJ'apporte beauté, intelligence et talent à tout ce que je fais.",
       ctaButton: "Contactez-Moi",
     },
     experience: {
@@ -208,13 +220,25 @@ const content = {
         {
           title: "Analyse d'Impact du Commerce International",
           description:
-            "Étude sur les effets des politiques commerciales sur les marchés émergents, se concentrant sur les indicateurs économiques.",
+            "Étude sur les effets des politiques commerciales sur les marchés émergents, se concentrant sur les indicateurs économiques et les changements d'environnement commercial.",
           link: "#",
         },
         {
           title: "Segmentation de Marché pour les Produits Durables",
           description:
             "Recherche sur les segments de consommateurs intéressés par les produits durables, analysant les facteurs démographiques et psychographiques.",
+          link: "#",
+        },
+        {
+          title: "Modèles d'Adoption de la Technologie Financière",
+          description:
+            "Analyse des taux d'adoption fintech à travers différentes démographies et régions géographiques, examinant les barrières et les moteurs.",
+          link: "#",
+        },
+        {
+          title: "Efficacité du Marketing des Médias Sociaux",
+          description:
+            "Étude complète sur la mesure du ROI et l'efficacité des campagnes de marketing des médias sociaux dans diverses industries.",
           link: "#",
         },
       ],
@@ -250,117 +274,7 @@ const content = {
       subtitle: "N'hésitez pas à me contacter pour des collaborations ou opportunités",
       email: "mariia.priakhina@email.com",
       linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
-    },
-  },
-  cs: {
-    nav: {
-      about: "O Mně",
-      experience: "Zkušenosti",
-      researches: "Výzkumy",
-      volunteer: "Dobrovolnictví",
-      contact: "Kontakt",
-    },
-    about: {
-      title: "O Mně",
-      name: "Mariia Priakhina",
-      role: "Obchodní Analytička | Výzkumnice Trhu | Datová Analytička",
-      bio: "Studentka Mezinárodní ekonomie a podnikání s vášní pro rozhodování založené na datech a analýzu trhu. Kombinuji analytické myšlení s obchodním důvtipem k odhalování poznatků, které řídí strategický růst a řeší složité obchodní výzvy.",
-      ctaButton: "Kontaktujte Mě",
-    },
-    experience: {
-      title: "Profesní Zkušenosti",
-      jobs: [
-        {
-          title: "Junior Obchodní Analytička",
-          company: "Global Markets Corp",
-          period: "2023 - Současnost",
-          tasks: [
-            "Analyzovala tržní trendy a vzorce chování spotřebitelů pomocí statistických metod",
-            "Vytvářela komplexní obchodní zprávy a vizualizace dat pro stakeholdery",
-            "Prováděla konkurenční analýzu a výzkum trhu pro nové produkty",
-            "Spolupracovala s mezifunkčními týmy na identifikaci obchodních příležitostí",
-          ],
-        },
-        {
-          title: "Stážistka Výzkumu Trhu",
-          company: "Institut ekonomického výzkumu",
-          period: "2022 - 2023",
-          tasks: [
-            "Navrhovala a prováděla průzkumy pro studie chování spotřebitelů",
-            "Prováděla kvantitativní analýzu dat mezinárodního obchodu",
-            "Připravovala zprávy tržní inteligence pro vládní agentury",
-            "Asistovala při ekonomických prognózách a analýze trendů",
-          ],
-        },
-        {
-          title: "Asistentka Analýzy Dat",
-          company: "Skupina obchodního poradenství",
-          period: "2021 - 2022",
-          tasks: [
-            "Zpracovávala a analyzovala velké datové soubory pomocí Excel, R a Python",
-            "Vytvářela interaktivní dashboardy pro klientské prezentace",
-            "Podporovala senior analytiky v projektech segmentace trhu",
-            "Udržovala kvalitu dat a prováděla validační kontroly",
-          ],
-        },
-      ],
-    },
-    researches: {
-      title: "Výzkumné Projekty",
-      projects: [
-        {
-          title: "Chování Spotřebitelů na Digitálních Trzích",
-          description:
-            "Komplexní analýza vzorců nákupů v e-commerce a preferencí digitálních spotřebitelů pomocí technik strojového učení.",
-          link: "#",
-        },
-        {
-          title: "Analýza Dopadu Mezinárodního Obchodu",
-          description:
-            "Studie o účincích obchodních politik na rozvíjející se trhy, zaměřená na ekonomické ukazatele a změny podnikatelského prostředí.",
-          link: "#",
-        },
-        {
-          title: "Segmentace Trhu pro Udržitelné Produkty",
-          description:
-            "Výzkum segmentů spotřebitelů zajímajících se o udržitelné produkty, analyzující demografické a psychografické faktory.",
-          link: "#",
-        },
-      ],
-    },
-    volunteer: {
-      title: "Dobrovolnické Zkušenosti",
-      activities: [
-        {
-          title: "Koordinátorka Ekonomického Vzdělávání",
-          organization: "Nadace mládežnické ekonomie",
-          period: "2020 - Současnost",
-          description:
-            "Organizovala workshopy o finanční gramotnosti a ekonomických principech pro středoškolské studenty. Vyvinula vzdělávací materiály a mentorovala více než 200 studentů.",
-        },
-        {
-          title: "Dobrovolná Datová Analytička",
-          organization: "Místní NGO pro sociální rozvoj",
-          period: "2021 - 2023",
-          description:
-            "Analyzovala data z průzkumů k měření dopadu sociálních programů. Vytvořila zprávy, které pomohly zajistit dodatečné financování.",
-        },
-        {
-          title: "Mentorka Mezinárodních Studentů",
-          organization: "Mezinárodní kancelář univerzity",
-          period: "2019 - 2022",
-          description:
-            "Mentorovala příchozí mezinárodní studenty, pomáhala jim přizpůsobit se akademickému a kulturnímu prostředí.",
-        },
-      ],
-    },
-    contact: {
-      title: "Kontaktujte Mě",
-      subtitle: "Neváhejte mě kontaktovat ohledně spolupráce nebo příležitostí",
-      email: "mariia.priakhina@email.com",
-      linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
+      whatsapp: "+33759314454",
     },
   },
   ru: {
@@ -374,8 +288,8 @@ const content = {
     about: {
       title: "Обо Мне",
       name: "Мария Приахина",
-      role: "Бизнес-Аналитик | Исследователь Рынка | Аналитик Данных",
-      bio: "Студентка международной экономики и бизнеса с страстью к принятию решений на основе данных и анализу рынка. Я сочетаю аналитическое мышление с деловой хваткой для выявления инсайтов, которые способствуют стратегическому росту и решают сложные бизнес-задачи.",
+      role: "Бизнес-Аналитик | Исследователь Рынка",
+      bio: "Привет!! Я студентка двойного диплома в Уральском федеральном университете и KEDGE Business School во Франции. Я увлечена анализом данных и исследованием рынка. С нетерпением жду построения карьеры в этих областях. Я не боюсь цифр и сложных задач. У меня есть опыт использования Python (pandas, numpy) для анализа данных, Excel и Google Sheets для отчетности, и Python или Tableau для визуализации.\n\nЯ привношу красоту, ум и талант во все, что делаю.",
       ctaButton: "Свяжитесь со Мной",
     },
     experience: {
@@ -437,6 +351,18 @@ const content = {
             "Исследование сегментов потребителей, заинтересованных в устойчивых продуктах, анализ демографических и психографических факторов.",
           link: "#",
         },
+        {
+          title: "Модели Принятия Финансовых Технологий",
+          description:
+            "Анализ показателей принятия финтех-решений в различных демографических группах и географических регионах, изучение барьеров и драйверов.",
+          link: "#",
+        },
+        {
+          title: "Эффективность Маркетинга в Социальных Сетях",
+          description:
+            "Комплексное исследование измерения ROI и эффективности маркетинговых кампаний в социальных сетях в различных отраслях.",
+          link: "#",
+        },
       ],
     },
     volunteer: {
@@ -470,34 +396,47 @@ const content = {
       subtitle: "Не стесняйтесь обращаться по поводу сотрудничества или возможностей",
       email: "mariia.priakhina@email.com",
       linkedin: "linkedin.com/in/mariia-priakhina",
-      mastodon: "@mariia@mastodon.social",
+      whatsapp: "+33759314454",
     },
   },
 }
 
 export default function ResumePage() {
-  const [language, setLanguage] = useState<"en" | "fr" | "cs" | "ru">("en")
+  const [language, setLanguage] = useState<"en" | "fr" | "ru">("en")
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const [activeSection, setActiveSection] = useState("about")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   const aboutRef = useRef<HTMLElement>(null)
   const experienceRef = useRef<HTMLElement>(null)
   const researchesRef = useRef<HTMLElement>(null)
   const volunteerRef = useRef<HTMLElement>(null)
   const contactRef = useRef<HTMLElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   const t = content[language]
 
   const languages = [
     { code: "en", name: "English", flag: "🇺🇸" },
     { code: "fr", name: "Français", flag: "🇫🇷" },
-    { code: "cs", name: "Čeština", flag: "🇨🇿" },
     { code: "ru", name: "Русский", flag: "🇷🇺" },
   ]
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Theme initialization and management
   useEffect(() => {
@@ -581,6 +520,11 @@ export default function ResumePage() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [isLanguageDropdownOpen])
 
+  // Add this useEffect after the other useEffect hooks
+  useEffect(() => {
+    console.log("Language changed to:", language)
+  }, [language])
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -605,13 +549,53 @@ export default function ResumePage() {
     }
   }
 
-  const selectLanguage = (langCode: "en" | "fr" | "cs" | "ru") => {
+  const selectLanguage = (langCode: "en" | "fr" | "ru") => {
+    console.log("Changing language to:", langCode) // Debug log
     setLanguage(langCode)
     setIsLanguageDropdownOpen(false)
+
+    // Force a small delay to ensure state update
+    setTimeout(() => {
+      console.log("Current language state:", langCode) // Debug log
+    }, 100)
   }
 
+  const handleLanguageToggle = () => {
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false)
+    // Toggle language dropdown
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
+  }
+
+  const handleLogoClick = () => {
+    scrollToSection("about")
+  }
+
+  // Carousel functions
+  const nextSlide = () => {
+    const maxSlide = t.researches.projects.length - (isMobile ? 1 : 2)
+    setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    const maxSlide = t.researches.projects.length - (isMobile ? 1 : 2)
+    setCurrentSlide((prev) => (prev <= 0 ? maxSlide : prev - 1))
+  }
+
+  // Auto-scroll for carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [isMobile, t.researches.projects.length])
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 dark:from-slate-900 dark:via-blue-gray-900/30 dark:to-slate-900 transition-colors duration-300">
+    <div
+      key={language}
+      className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 dark:from-slate-900 dark:via-blue-gray-900/30 dark:to-slate-900 transition-colors duration-300"
+    >
       {/* Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
@@ -621,9 +605,12 @@ export default function ResumePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="font-bold text-xl bg-gradient-to-r from-slate-600 to-blue-600 bg-clip-text text-transparent">
+            <button
+              onClick={handleLogoClick}
+              className="font-bold text-xl bg-gradient-to-r from-slate-600 to-blue-600 bg-clip-text text-transparent hover:from-slate-700 hover:to-blue-700 transition-all duration-200"
+            >
               MP
-            </div>
+            </button>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
@@ -674,7 +661,7 @@ export default function ResumePage() {
               {/* Language Dropdown */}
               <div className="relative">
                 <button
-                  onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                  onClick={handleLanguageToggle}
                   className="flex items-center space-x-1 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
                 >
                   <Globe className="w-4 h-4" />
@@ -686,14 +673,14 @@ export default function ResumePage() {
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        onClick={() => selectLanguage(lang.code as "en" | "fr" | "cs" | "ru")}
+                        onClick={() => selectLanguage(lang.code as "en" | "fr" | "ru")}
                         className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center space-x-3 ${
                           language === lang.code
                             ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100"
                             : "text-slate-700 dark:text-slate-300"
                         }`}
                       >
-                        <span>{lang.flag}</span>
+                        {!isMobile && <span>{lang.flag}</span>}
                         <span>{lang.name}</span>
                       </button>
                     ))}
@@ -753,32 +740,43 @@ export default function ResumePage() {
           ref={aboutRef}
           className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-slate-900/50 dark:to-blue-gray-900/50"
         >
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-slate-400 to-blue-500 p-1">
-                <div className="w-full h-full rounded-full bg-white dark:bg-slate-800 flex items-center justify-center">
-                  <img
-                    src="/placeholder.svg?height=120&width=120"
-                    alt={t.about.name}
-                    className="w-28 h-28 rounded-full object-cover"
-                  />
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              {/* Profile Photo */}
+              <div className="flex-shrink-0">
+                <div className="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-slate-400 to-blue-500 p-1">
+                  <div className="w-full h-full rounded-full bg-white dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/placeholder.svg?height=300&width=300"
+                      alt={t.about.name}
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-slate-600 via-blue-600 to-slate-700 bg-clip-text text-transparent">
-                  {t.about.name}
-                </span>
-              </h1>
-              <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">{t.about.role}</p>
-              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
-                {t.about.bio}
-              </p>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-slate-600 to-blue-600 text-white font-medium rounded-lg hover:from-slate-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                {t.about.ctaButton}
-              </button>
+
+              {/* Text Content */}
+              <div className="flex-1 text-center lg:text-left">
+                <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                  <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient-x bg-300% bg-gradient-to-r">
+                    {t.about.name}
+                  </span>
+                </h1>
+                <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">{t.about.role}</p>
+                <div className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed mb-8">
+                  {t.about.bio.split("\n\n").map((paragraph, index) => (
+                    <p key={index} className={index > 0 ? "mt-4" : ""}>
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-slate-600 to-blue-600 text-white font-medium rounded-lg hover:from-slate-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  {t.about.ctaButton}
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -820,37 +818,81 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Research Section */}
+        {/* Research Section with Carousel */}
         <section
           id="researches"
           ref={researchesRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50/80 to-purple-50/80 dark:from-blue-gray-900/50 dark:to-slate-900/80"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-slate-900/50 dark:to-blue-gray-900/50"
         >
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">
               {t.researches.title}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {t.researches.projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
-                >
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                    {project.description}
-                  </p>
-                  <a
-                    href={project.link}
-                    className="inline-flex items-center text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 text-sm font-medium transition-colors"
+
+            {/* Carousel Container */}
+            <div className="relative">
+              {/* Navigation Arrows - Desktop Only */}
+              {!isMobile && (
+                <>
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:bg-white dark:hover:bg-slate-800"
                   >
-                    Read More
-                    <ChevronUp className="w-4 h-4 ml-1 rotate-45" />
-                  </a>
+                    <ChevronLeft className="w-6 h-6 text-slate-600 dark:text-slate-300" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:bg-white dark:hover:bg-slate-800"
+                  >
+                    <ChevronRight className="w-6 h-6 text-slate-600 dark:text-slate-300" />
+                  </button>
+                </>
+              )}
+
+              {/* Carousel */}
+              <div ref={carouselRef} className="overflow-hidden mx-8 md:mx-12">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{
+                    transform: `translateX(-${currentSlide * (isMobile ? 85 : 50)}%)`,
+                  }}
+                >
+                  {t.researches.projects.map((project, index) => (
+                    <div key={index} className={`flex-shrink-0 px-3 ${isMobile ? "w-4/5" : "w-1/2"}`}>
+                      <div className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group h-full">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                          {project.description}
+                        </p>
+                        <a
+                          href={project.link}
+                          className="inline-flex items-center text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 text-sm font-medium transition-colors"
+                        >
+                          Read More
+                          <ChevronUp className="w-4 h-4 ml-1 rotate-45" />
+                        </a>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Dots Indicator - Desktop Only */}
+              {!isMobile && (
+                <div className="flex justify-center mt-8 space-x-2">
+                  {Array.from({ length: t.researches.projects.length - 1 }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-colors ${
+                        currentSlide === index ? "bg-slate-600 dark:bg-slate-300" : "bg-slate-300 dark:bg-slate-600"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -859,7 +901,7 @@ export default function ResumePage() {
         <section
           id="volunteer"
           ref={volunteerRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-100/80 to-blue-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100/80 to-gray-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80"
         >
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">{t.volunteer.title}</h2>
@@ -887,7 +929,7 @@ export default function ResumePage() {
         <section
           id="contact"
           ref={contactRef}
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50/80 to-pink-50/80 dark:from-blue-gray-900/50 dark:to-slate-900/80"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-slate-900/50 dark:to-blue-gray-900/50"
         >
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t.contact.title}</h2>
@@ -913,13 +955,13 @@ export default function ResumePage() {
               </a>
 
               <a
-                href={`https://mastodon.social/${t.contact.mastodon}`}
+                href={`https://wa.me/${t.contact.whatsapp.replace(/[^0-9]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
               >
-                <MastodonIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span className="text-slate-700 dark:text-slate-300">Mastodon</span>
+                <WhatsAppIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span className="text-slate-700 dark:text-slate-300">WhatsApp</span>
               </a>
             </div>
           </div>
@@ -927,10 +969,10 @@ export default function ResumePage() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-700/50 bg-gradient-to-br from-slate-100/80 to-gray-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80">
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-slate-900/50 dark:to-blue-gray-900/50">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
-            © 2024 {t.about.name}. Built with React & Next.js
+            © 2025 {t.about.name}. Built with React & Next.js
           </p>
         </div>
       </footer>
