@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Globe, Sun, Moon, Menu, X } from "lucide-react"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Mail, Linkedin, MessageCircle } from "lucide-react"
 
 // Language content
 const content = {
@@ -292,7 +294,7 @@ const content = {
         {
           title: "Факторы, влияющие на цены на такси",
           description:
-            "Провел полномасштабный исследовательский проект с использованием оригинальных данных опроса, собранных у 116 студентов университета. Провел статистический и эконометрический анализ для выявления ключевых факторов, определяющих цены на такси. Использовал такие инструменты, как регрессионное моделирование и корреляционный анализ, для количественной оценки влияния каждого фактора.",
+            "Провел полномасштабный исследовательский проект с использованием оригинальных данных опроса, собранных у 116 студентов университета. Провел статистический и эконометрический анализ для выявления ключевых факторов, определяющих цены на такси. Использовал такие инструменты, как регрессионное моделирование и корреляционный анализ для количественной оценки влияния каждого фактора.",
           period: "2024",
         },
         {
@@ -355,32 +357,8 @@ const content = {
 }
 
 // Custom icons
-const GmailIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path
-      d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 10.09l9.454-6.269h.91c.904 0 1.636.732 1.636 1.636z"
-      fill="#EA4335"
-    />
-  </svg>
-)
-
-const LinkedInIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path
-      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-      fill="#0077B5"
-    />
-  </svg>
-)
-
-const WhatsAppIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path
-      d="M12.04 2C7.34 2 3.58 5.76 3.58 10.46c0 1.5.4 2.92 1.18 4.17L2 22l6.3-1.65c1.18.64 2.51 1 3.74 1 4.7 0 8.46-3.76 8.46-8.46S16.74 2 12.04 2zm.01 1.67c4.02 0 7.29 3.27 7.29 7.29 0 4.02-3.27 7.29-7.29 7.29-1.25 0-2.43-.32-3.47-.88l-.25-.14-2.65.69.7-2.58-.17-.27c-.6-.96-.92-2.07-.92-3.22 0-4.02 3.27-7.29 7.29-7.29zm-2.3 4.5c-.13 0-.26.05-.36.15-.1.1-.15.23-.15.36v2.3c0 .13.05.26.15.36.1.1.23.15.36.15h.82c.13 0 .26-.05.36-.15.1-.1.15-.23.15-.36V9.03c0-.13-.05-.26-.15-.36-.1-.1-.23-.15-.36-.15h-.82zm3.65 0c-.13 0-.26.05-.36.15-.1.1-.15.23-.15.36v2.3c0 .13.05.26.15.36.1.1.23.15.36.15h.82c.13 0 .26-.05.36-.15.1-.1.15-.23.15-.36V9.03c0-.13-.05-.26-.15-.36-.1-.1-.23-.15-.36-.15h-.82z"
-      fill="#25D366"
-    />
-  </svg>
-)
+// Remove the custom GmailIcon, LinkedInIcon, and WhatsAppIcon components
+// They will be replaced with Lucide icons
 
 export default function ResumePage() {
   const [language, setLanguage] = useState<"en" | "fr" | "ru">("en")
@@ -390,6 +368,7 @@ export default function ResumePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const lastScrollY = useRef(0)
+  const [scrollY, setScrollY] = useState(0)
 
   const languages = [
     { code: "en" as const, name: "English", flag: "🇺🇸" },
@@ -463,6 +442,12 @@ export default function ResumePage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -473,6 +458,20 @@ export default function ResumePage() {
 
   const scrollToContact = () => {
     scrollToSection("contact")
+  }
+
+  const [aboutDescriptionPart1, aboutDescriptionPart2] = t.about.description.split("\n\n")
+
+  // Update the mobile menu toggle function
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  // Add a function to handle language dropdown in mobile
+  const handleLanguageToggle = () => {
+    if (isMobile && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false)
+    }
   }
 
   return (
@@ -507,14 +506,14 @@ export default function ResumePage() {
             {/* Controls */}
             <div className="flex items-center space-x-4">
               {/* Theme Toggle */}
-              <Button variant="ghost" size="sm" onClick={toggleTheme} className="p-2">
+              <Button variant="ghost" size="sm" onClick={toggleTheme} className="p-2 transition-colors duration-150">
                 {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
               </Button>
 
               {/* Language Dropdown */}
-              <DropdownMenu>
+              <DropdownMenu onOpenChange={handleLanguageToggle}>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="p-2">
+                  <Button variant="ghost" size="sm" className="p-2 transition-colors duration-150">
                     <Globe className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -533,12 +532,7 @@ export default function ResumePage() {
               </DropdownMenu>
 
               {/* Mobile Menu Toggle */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="md:hidden p-2"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
+              <Button variant="ghost" size="sm" className="md:hidden p-2" onClick={toggleMobileMenu}>
                 {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
               </Button>
             </div>
@@ -572,17 +566,24 @@ export default function ResumePage() {
         {/* About Section */}
         <section id="about" className="py-20 bg-transparent">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:items-center md:gap-12">
-              <div className="mb-8 md:mb-0 md:mr-8 flex-shrink-0">
+            <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:items-start md:gap-12">
+              <div className="flex-shrink-0 w-64 h-64 mx-auto md:mx-0 mb-8 md:mb-0">
                 <img
                   src="/profile-photo.jpg"
                   alt="Mariia Priakhina"
-                  className="w-64 h-64 rounded-2xl mx-auto object-cover border-8 border-white dark:border-slate-700 shadow-lg"
+                  className="w-full h-full rounded-2xl object-cover border-8 border-white dark:border-slate-700 shadow-lg"
                 />
               </div>
               <div className="text-center md:text-left flex-grow">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-slate-600 to-blue-600 dark:from-slate-300 dark:to-blue-400 bg-clip-text text-transparent">
+                  <span
+                    className="bg-gradient-to-r from-slate-600 via-blue-600 to-purple-600 dark:from-slate-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient-x"
+                    style={{
+                      backgroundSize: "200% 200%",
+                      animation: `gradient-shift 8s ease infinite, gradient-scroll 0.1s linear infinite`,
+                      transform: `hue-rotate(${scrollY * 0.1}deg)`,
+                    }}
+                  >
                     Mariia Priakhina
                   </span>
                 </h2>
@@ -590,9 +591,14 @@ export default function ResumePage() {
                 <p className="text-lg text-slate-500 dark:text-slate-400">
                   International Economics and Business Student
                 </p>
-                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 mt-8 max-w-3xl mx-auto md:mx-0">
-                  {t.about.description}
+                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4 mt-8 max-w-3xl mx-auto md:mx-0">
+                  {aboutDescriptionPart1}
                 </p>
+                {aboutDescriptionPart2 && (
+                  <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-3xl mx-auto md:mx-0">
+                    {aboutDescriptionPart2}
+                  </p>
+                )}
                 <Button
                   onClick={scrollToContact}
                   size="lg"
@@ -642,35 +648,38 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Research Section */}
+        {/* Research Section - Replace the entire section */}
         <section id="researches" className="py-20 bg-transparent">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
                 {t.researches.title}
               </h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {t.researches.projects.map((project, index) => (
-                  <Card
-                    key={index}
-                    className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 leading-tight">
-                          {project.title}
-                        </h3>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 ml-2 flex-shrink-0">
-                          {project.period}
-                        </span>
-                      </div>
-                      <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                        {project.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              <Carousel className="w-full">
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {t.researches.projects.map((project, index) => (
+                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                      <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                        <CardContent className="p-6 flex flex-col h-full">
+                          <div className="flex justify-between items-start mb-3">
+                            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 leading-tight flex-grow">
+                              {project.title}
+                            </h3>
+                            <span className="text-xs text-slate-500 dark:text-slate-400 ml-2 flex-shrink-0 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">
+                              {project.period}
+                            </span>
+                          </div>
+                          <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-grow">
+                            {project.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex" />
+                <CarouselNext className="hidden md:flex" />
+              </Carousel>
             </div>
           </div>
         </section>
@@ -729,25 +738,25 @@ export default function ResumePage() {
                   href={t.contact.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
                 >
-                  <LinkedInIcon />
+                  <Linkedin className="w-6 h-6" />
                   <span>LinkedIn</span>
                 </a>
                 <a
                   href={`mailto:${t.contact.email}`}
-                  className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
                 >
-                  <GmailIcon />
+                  <Mail className="w-6 h-6" />
                   <span>{t.contact.email}</span>
                 </a>
                 <a
                   href={`https://wa.me/${t.contact.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
                 >
-                  <WhatsAppIcon />
+                  <MessageCircle className="w-6 h-6" />
                   <span>{t.contact.phone}</span>
                 </a>
               </div>
