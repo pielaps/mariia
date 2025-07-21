@@ -1,17 +1,41 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Globe, Sun, Moon, Menu, X } from "lucide-react"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { ChevronUp, ChevronDown, Globe } from "lucide-react"
+
+// Official Brand Icons Components
+const GmailIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.887.711-1.613 1.598-1.636a1.636 1.636 0 0 1 .674.132L12 9.993l9.728-6.04a1.636 1.636 0 0 1 .674-.132c.887.023 1.598.749 1.598 1.636z"
+      fill="#EA4335"
+    />
+  </svg>
+)
+
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+      fill="#0A66C2"
+    />
+  </svg>
+)
+
+const MastodonIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
+      fill="#6364FF"
+    />
+  </svg>
+)
 
 // Language content
 const content = {
   en: {
     nav: {
-      about: "About",
+      about: "About Me",
       experience: "Experience",
       researches: "Researches",
       volunteer: "Volunteer",
@@ -19,40 +43,45 @@ const content = {
     },
     about: {
       title: "About Me",
-      description:
-        "Hello!! I am a double-degree student at Ural Federal University and KEDGE Business School in France. I am passionate about data analysis and market research. I look forward to building my career in these fields. I am not afraid of numbers and difficult challenges. I have experience using Python (pandas, numpy) for data analysis, Excel and Google Sheets for reporting, and Python or Tableau for visualization.\n\nI bring beauty, brains, and talent to everything I do.",
+      name: "Mariia Priakhina",
+      role: "Business Analyst | Market Researcher | Data Analyst",
+      bio: "International Economics and Business student with a passion for data-driven decision making and market analysis. I combine analytical thinking with business acumen to uncover insights that drive strategic growth and solve complex business challenges.",
       ctaButton: "Contact Me",
     },
     experience: {
-      title: "Work Experience",
+      title: "Professional Experience",
       jobs: [
         {
-          title: "Marketing Intern",
-          company: "SMARTGEN Wealth Management",
-          period: "Mar 2025 - Present",
-          description: [
-            "Analyzed 30 competitors in wealth management and created a strategic reference guide for the team",
-            "Developed a Telegram bot in Python that automates real-time monitoring of competitor updates (reducing daily manual tracking time by up to 4 hours for the team)",
+          title: "Junior Business Analyst",
+          company: "Global Markets Corp",
+          period: "2023 - Present",
+          tasks: [
+            "Analyzed market trends and consumer behavior patterns using statistical methods",
+            "Created comprehensive business reports and data visualizations for stakeholders",
+            "Conducted competitive analysis and market research for new product launches",
+            "Collaborated with cross-functional teams to identify business opportunities",
           ],
         },
         {
-          title: "Project Administrator",
-          company: "Unilever",
-          period: "Mar - May 2024",
-          description: [
-            "Worked on a corporate culture development project",
-            'Developed a themed quiz "UniQuiz" about the history of the "Kalina" factory and Unilever',
-            "The quiz was held for 30 children of employees and received positive feedback as part of a corporate event",
+          title: "Market Research Intern",
+          company: "Economic Research Institute",
+          period: "2022 - 2023",
+          tasks: [
+            "Designed and conducted surveys for consumer behavior studies",
+            "Performed quantitative analysis on international trade data",
+            "Prepared market intelligence reports for government agencies",
+            "Assisted in economic forecasting models and trend analysis",
           ],
         },
         {
-          title: "Assistant",
-          company: "Haensch",
-          period: "Nov - Dec 2023",
-          description: [
-            "Researched certification rules for 40 industry-country pairs for internal market analysis",
-            "Conducted certification research for 4 countries across multiple industries",
-            "The results were included in a product certification guide developed in collaboration with the Russian Export Center",
+          title: "Data Analysis Assistant",
+          company: "Business Consulting Group",
+          period: "2021 - 2022",
+          tasks: [
+            "Processed and analyzed large datasets using Excel, R, and Python",
+            "Created interactive dashboards for client presentations",
+            "Supported senior analysts in market segmentation projects",
+            "Maintained data quality and performed validation checks",
           ],
         },
       ],
@@ -61,34 +90,22 @@ const content = {
       title: "Research Projects",
       projects: [
         {
-          title: "Factors Influencing Taxi Fare Prices",
+          title: "Consumer Behavior in Digital Markets",
           description:
-            "Conducted a full-scale research project using original survey data collected from 116 university students. Performed statistical and econometric analysis to identify key drivers of taxi pricing. Used tools such as regression modeling and correlation analysis to quantify the impact of each factor.",
-          period: "2024",
+            "Comprehensive analysis of e-commerce purchasing patterns and digital consumer preferences using machine learning techniques.",
+          link: "#",
         },
         {
-          title: "Analysis of consumer behavior in the mobile communication market on the example of Tele2",
+          title: "International Trade Impact Analysis",
           description:
-            "Analyzed tariff preferences of customers using a real mobile network operator as a case study. Built consumer indifference curves for different population segments and identified optimal tariff plans. Provided recommendations that demonstrated up to 40% cost reduction for certain user groups. Published in 2024 as part of a research collection on digital economy and consumption behavior.",
-          period: "2024",
+            "Study on the effects of trade policies on emerging markets, focusing on economic indicators and business environment changes.",
+          link: "#",
         },
         {
-          title: "Key changes in accounting for material and production inventory",
+          title: "Market Segmentation for Sustainable Products",
           description:
-            "Research focused on analyzing the evolving standards and practices in inventory accounting, examining regulatory changes and their impact on business operations.",
-          period: "2024",
-        },
-        {
-          title: "Current changes in federal accounting standards: necessity in times of change",
-          description:
-            "Comprehensive analysis of federal accounting standard modifications and their strategic importance during periods of economic and regulatory transformation.",
-          period: "2025",
-        },
-        {
-          title: "Dynamics of economic cooperation between China and Russia under economic restrictions",
-          description:
-            "In-depth study of bilateral trade relationships and economic partnerships between China and Russia, analyzing adaptation strategies under international sanctions and restrictions.",
-          period: "2025",
+            "Research on consumer segments interested in sustainable products, analyzing demographic and psychographic factors.",
+          link: "#",
         },
       ],
     },
@@ -96,443 +113,528 @@ const content = {
       title: "Volunteer Experience",
       activities: [
         {
-          title: "Guide",
-          organization: "INNOPROM",
-          period: "Jul 2023",
-          description: [
-            "Led guided tours for international guests in both Russian and English, coordinated visitor flow, and provided on-site logistical support",
-            "Represented the host country to foreign delegations and ensured a smooth and informative visitor experience",
-            "Personally conducted a VIP tour for the delegation from Zimbabwe, contributing to the professional image of the event and its international outreach",
-          ],
+          title: "Economic Education Coordinator",
+          organization: "Youth Economics Foundation",
+          period: "2020 - Present",
+          description:
+            "Organized workshops on financial literacy and economic principles for high school students. Developed educational materials and mentored over 200 students in understanding market economics.",
         },
         {
-          title: "Volunteer Coordinator",
-          organization: "International University Sports Festival Committee",
-          period: "Jul - Sep 2023",
-          description: [
-            "Assisted foreign athletes and delegation members with accommodation, local transportation, and orientation throughout the city",
-            "Served as a cultural liaison between international participants and local organizers, ensuring smooth communication and comfort during the event",
-            "Helped maintain the festival's reputation for hospitality and operational excellence in a high-pressure international setting",
-          ],
+          title: "Data Analyst Volunteer",
+          organization: "Local NGO for Social Development",
+          period: "2021 - 2023",
+          description:
+            "Analyzed survey data to measure the impact of social programs. Created reports that helped secure additional funding and improve program effectiveness.",
+        },
+        {
+          title: "International Student Mentor",
+          organization: "University International Office",
+          period: "2019 - 2022",
+          description:
+            "Mentored incoming international students, helping them adapt to academic and cultural environments. Organized cultural exchange events and academic support sessions.",
         },
       ],
     },
     contact: {
-      title: "Contact Me",
-      description:
-        "I'm always interested in discussing new opportunities in business analysis, market research, or data analysis. Feel free to reach out!",
-      email: "mariiapriakhina@gmail.com",
-      linkedin: "https://www.linkedin.com/in/mariiapriakhina/",
-      phone: "+33759314454",
+      title: "Get In Touch",
+      subtitle: "Feel free to reach out for collaborations or opportunities",
+      email: "mariia.priakhina@email.com",
+      linkedin: "linkedin.com/in/mariia-priakhina",
+      mastodon: "@mariia@mastodon.social",
     },
   },
   fr: {
     nav: {
-      about: "À propos",
+      about: "À Propos",
       experience: "Expérience",
       researches: "Recherches",
       volunteer: "Bénévolat",
       contact: "Contact",
     },
     about: {
-      title: "À propos de moi",
-      description:
-        "Hello!! Je suis une étudiante en double diplôme à l'Université fédérale de l'Oural et à KEDGE Business School en France. Je suis passionnée par l'analyse de données et les études de marché. J'ai hâte de construire ma carrière dans ces domaines. Je n'ai pas peur des chiffres et des défis difficiles. J'ai de l'expérience dans l'utilisation de Python (pandas, numpy) pour l'analyse de données, Excel et Google Sheets pour le reporting, et Python ou Tableau pour la visualisation.\n\nJ'apporte beauté, intelligence et talent à tout ce que je fais.",
-      ctaButton: "Me contacter",
+      title: "À Propos de Moi",
+      name: "Mariia Priakhina",
+      role: "Analyste d'Affaires | Chercheuse de Marché | Analyste de Données",
+      bio: "Étudiante en Économie Internationale et Commerce avec une passion pour la prise de décision basée sur les données et l'analyse de marché. Je combine la pensée analytique avec l'acumen commercial pour découvrir des insights qui stimulent la croissance stratégique et résolvent des défis commerciaux complexes.",
+      ctaButton: "Contactez-Moi",
     },
     experience: {
-      title: "Expérience professionnelle",
+      title: "Expérience Professionnelle",
       jobs: [
         {
-          title: "Stagiaire en marketing",
-          company: "SMARTGEN Wealth Management",
-          period: "Mars 2025 - Présent",
-          description: [
-            "Analyse de 30 concurrents en gestion de patrimoine et création d'un guide de référence stratégique pour l'équipe",
-            "Développement d'un bot Telegram en Python qui automatise la surveillance en temps réel des mises à jour des concurrents (réduisant le temps de suivi manuel quotidien jusqu'à 4 heures pour l'équipe)",
+          title: "Analyste d'Affaires Junior",
+          company: "Global Markets Corp",
+          period: "2023 - Présent",
+          tasks: [
+            "Analysé les tendances du marché et les modèles de comportement des consommateurs",
+            "Créé des rapports d'affaires complets et des visualisations de données",
+            "Effectué des analyses concurrentielles et des recherches de marché",
+            "Collaboré avec des équipes transversales pour identifier les opportunités",
           ],
         },
         {
-          title: "Administrateur de projet",
-          company: "Unilever",
-          period: "Mars - Mai 2024",
-          description: [
-            "Travail sur un projet de développement de la culture d'entreprise",
-            "Développement d'un quiz thématique \"UniQuiz\" sur l'histoire de l'usine \"Kalina\" et d'Unilever",
-            "Le quiz a été organisé pour 30 enfants d'employés et a reçu des commentaires positifs dans le cadre d'un événement d'entreprise",
+          title: "Stagiaire en Recherche de Marché",
+          company: "Institut de Recherche Économique",
+          period: "2022 - 2023",
+          tasks: [
+            "Conçu et mené des enquêtes sur le comportement des consommateurs",
+            "Effectué des analyses quantitatives sur les données de commerce international",
+            "Préparé des rapports d'intelligence de marché pour les agences gouvernementales",
+            "Assisté dans les modèles de prévision économique et l'analyse des tendances",
           ],
         },
         {
-          title: "Assistant",
-          company: "Haensch",
-          period: "Nov - Déc 2023",
-          description: [
-            "Recherche des règles de certification pour 40 paires industrie-pays pour l'analyse du marché interne",
-            "Réalisation de recherches sur la certification pour 4 pays dans plusieurs secteurs",
-            "Les résultats ont été inclus dans un guide de certification des produits développé en collaboration avec le Centre d'exportation russe",
+          title: "Assistant d'Analyse de Données",
+          company: "Groupe de Conseil en Affaires",
+          period: "2021 - 2022",
+          tasks: [
+            "Traité et analysé de grands ensembles de données avec Excel, R et Python",
+            "Créé des tableaux de bord interactifs pour les présentations clients",
+            "Soutenu les analystes seniors dans les projets de segmentation de marché",
+            "Maintenu la qualité des données et effectué des vérifications de validation",
           ],
         },
       ],
     },
     researches: {
-      title: "Projets de recherche",
+      title: "Projets de Recherche",
       projects: [
         {
-          title: "Facteurs influençant les prix des courses en taxi",
+          title: "Comportement des Consommateurs dans les Marchés Numériques",
           description:
-            "Réalisation d'un projet de recherche à grande échelle utilisant des données d'enquête originales collectées auprès de 116 étudiants universitaires. Réalisation d'analyses statistiques et économétriques pour identifier les principaux moteurs de la tarification des taxis. Utilisation d'outils tels que la modélisation de régression et l'analyse de corrélation pour quantifier l'impact de chaque facteur.",
-          period: "2024",
+            "Analyse complète des modèles d'achat e-commerce et des préférences des consommateurs numériques utilisant des techniques d'apprentissage automatique.",
+          link: "#",
         },
         {
-          title:
-            "Analyse du comportement des consommateurs sur le marché de la communication mobile sur l'exemple de Tele2",
+          title: "Analyse d'Impact du Commerce International",
           description:
-            "Analyse des préférences tarifaires des clients en utilisant un véritable opérateur de réseau mobile comme étude de cas. Construction de courbes d'indifférence des consommateurs pour différents segments de population et identification des plans tarifaires optimaux. Fourniture de recommandations qui ont démontré une réduction des coûts allant jusqu'à 40 % pour certains groupes d'utilisateurs. Publication en 2024 dans le cadre d'un recueil de recherches sur l'économie numérique et le comportement de consommation.",
-          period: "2024",
+            "Étude sur les effets des politiques commerciales sur les marchés émergents, se concentrant sur les indicateurs économiques.",
+          link: "#",
         },
         {
-          title: "Principaux changements dans la comptabilisation des stocks de matières et de production",
+          title: "Segmentation de Marché pour les Produits Durables",
           description:
-            "Recherche axée sur l'analyse des normes et pratiques évolutives en comptabilité des stocks, examinant les changements réglementaires et leur impact sur les opérations commerciales.",
-          period: "2024",
-        },
-        {
-          title: "Changements actuels dans les normes comptables fédérales : nécessité en période de changement",
-          description:
-            "Analyse complète des modifications des normes comptables fédérales et de leur importance stratégique pendant les périodes de transformation économique et réglementaire.",
-          period: "2025",
-        },
-        {
-          title:
-            "Dynamique de la coopération économique entre la Chine et la Russie dans le cadre de restrictions économiques",
-          description:
-            "Étude approfondie des relations commerciales bilatérales et des partenariats économiques entre la Chine et la Russie, analysant les stratégies d'adaptation sous les sanctions et restrictions internationales.",
-          period: "2025",
+            "Recherche sur les segments de consommateurs intéressés par les produits durables, analysant les facteurs démographiques et psychographiques.",
+          link: "#",
         },
       ],
     },
     volunteer: {
-      title: "Expérience bénévole",
+      title: "Expérience Bénévole",
       activities: [
         {
-          title: "Guide",
-          organization: "INNOPROM",
-          period: "Juil 2023",
-          description: [
-            "Animation de visites guidées pour des invités internationaux en russe et en anglais, coordination du flux de visiteurs et fourniture d'un soutien logistique sur place",
-            "Représentation du pays hôte auprès des délégations étrangères et garantie d'une expérience de visite fluide et informative",
-            "Réalisation personnelle d'une visite VIP pour la délégation du Zimbabwe, contribuant à l'image professionnelle de l'événement et à son rayonnement international",
-          ],
+          title: "Coordinatrice d'Éducation Économique",
+          organization: "Fondation d'Économie pour la Jeunesse",
+          period: "2020 - Présent",
+          description:
+            "Organisé des ateliers sur la littératie financière et les principes économiques pour les lycéens. Développé du matériel éducatif et mentoré plus de 200 étudiants.",
         },
         {
-          title: "Coordinateur des bénévoles",
-          organization: "Comité du Festival international du sport universitaire",
-          period: "Juil - Sep 2023",
-          description: [
-            "Aide aux athlètes étrangers et aux membres des délégations pour l'hébergement, le transport local et l'orientation dans la ville",
-            "Liaison culturelle entre les participants internationaux et les organisateurs locaux, assurant une communication fluide et le confort pendant l'événement",
-            "Aide au maintien de la réputation du festival en matière d'hospitalité et d'excellence opérationnelle dans un contexte international à forte pression",
-          ],
+          title: "Analyste de Données Bénévole",
+          organization: "ONG Locale pour le Développement Social",
+          period: "2021 - 2023",
+          description:
+            "Analysé les données d'enquête pour mesurer l'impact des programmes sociaux. Créé des rapports qui ont aidé à sécuriser des financements supplémentaires.",
+        },
+        {
+          title: "Mentore d'Étudiants Internationaux",
+          organization: "Bureau International de l'Université",
+          period: "2019 - 2022",
+          description:
+            "Mentoré les étudiants internationaux entrants, les aidant à s'adapter aux environnements académiques et culturels.",
         },
       ],
     },
     contact: {
-      title: "Me contacter",
-      description:
-        "Je suis toujours intéressée à discuter de nouvelles opportunités en analyse d'affaires, recherche de marché ou analyse de données. N'hésitez pas à me contacter !",
-      email: "mariiapriakhina@gmail.com",
-      linkedin: "https://www.linkedin.com/in/mariiapriakhina/",
-      phone: "+33759314454",
+      title: "Contactez-Moi",
+      subtitle: "N'hésitez pas à me contacter pour des collaborations ou opportunités",
+      email: "mariia.priakhina@email.com",
+      linkedin: "linkedin.com/in/mariia-priakhina",
+      mastodon: "@mariia@mastodon.social",
+    },
+  },
+  cs: {
+    nav: {
+      about: "O Mně",
+      experience: "Zkušenosti",
+      researches: "Výzkumy",
+      volunteer: "Dobrovolnictví",
+      contact: "Kontakt",
+    },
+    about: {
+      title: "O Mně",
+      name: "Mariia Priakhina",
+      role: "Obchodní Analytička | Výzkumnice Trhu | Datová Analytička",
+      bio: "Studentka Mezinárodní ekonomie a podnikání s vášní pro rozhodování založené na datech a analýzu trhu. Kombinuji analytické myšlení s obchodním důvtipem k odhalování poznatků, které řídí strategický růst a řeší složité obchodní výzvy.",
+      ctaButton: "Kontaktujte Mě",
+    },
+    experience: {
+      title: "Profesní Zkušenosti",
+      jobs: [
+        {
+          title: "Junior Obchodní Analytička",
+          company: "Global Markets Corp",
+          period: "2023 - Současnost",
+          tasks: [
+            "Analyzovala tržní trendy a vzorce chování spotřebitelů pomocí statistických metod",
+            "Vytvářela komplexní obchodní zprávy a vizualizace dat pro stakeholdery",
+            "Prováděla konkurenční analýzu a výzkum trhu pro nové produkty",
+            "Spolupracovala s mezifunkčními týmy na identifikaci obchodních příležitostí",
+          ],
+        },
+        {
+          title: "Stážistka Výzkumu Trhu",
+          company: "Institut ekonomického výzkumu",
+          period: "2022 - 2023",
+          tasks: [
+            "Navrhovala a prováděla průzkumy pro studie chování spotřebitelů",
+            "Prováděla kvantitativní analýzu dat mezinárodního obchodu",
+            "Připravovala zprávy tržní inteligence pro vládní agentury",
+            "Asistovala při ekonomických prognózách a analýze trendů",
+          ],
+        },
+        {
+          title: "Asistentka Analýzy Dat",
+          company: "Skupina obchodního poradenství",
+          period: "2021 - 2022",
+          tasks: [
+            "Zpracovávala a analyzovala velké datové soubory pomocí Excel, R a Python",
+            "Vytvářela interaktivní dashboardy pro klientské prezentace",
+            "Podporovala senior analytiky v projektech segmentace trhu",
+            "Udržovala kvalitu dat a prováděla validační kontroly",
+          ],
+        },
+      ],
+    },
+    researches: {
+      title: "Výzkumné Projekty",
+      projects: [
+        {
+          title: "Chování Spotřebitelů na Digitálních Trzích",
+          description:
+            "Komplexní analýza vzorců nákupů v e-commerce a preferencí digitálních spotřebitelů pomocí technik strojového učení.",
+          link: "#",
+        },
+        {
+          title: "Analýza Dopadu Mezinárodního Obchodu",
+          description:
+            "Studie o účincích obchodních politik na rozvíjející se trhy, zaměřená na ekonomické ukazatele a změny podnikatelského prostředí.",
+          link: "#",
+        },
+        {
+          title: "Segmentace Trhu pro Udržitelné Produkty",
+          description:
+            "Výzkum segmentů spotřebitelů zajímajících se o udržitelné produkty, analyzující demografické a psychografické faktory.",
+          link: "#",
+        },
+      ],
+    },
+    volunteer: {
+      title: "Dobrovolnické Zkušenosti",
+      activities: [
+        {
+          title: "Koordinátorka Ekonomického Vzdělávání",
+          organization: "Nadace mládežnické ekonomie",
+          period: "2020 - Současnost",
+          description:
+            "Organizovala workshopy o finanční gramotnosti a ekonomických principech pro středoškolské studenty. Vyvinula vzdělávací materiály a mentorovala více než 200 studentů.",
+        },
+        {
+          title: "Dobrovolná Datová Analytička",
+          organization: "Místní NGO pro sociální rozvoj",
+          period: "2021 - 2023",
+          description:
+            "Analyzovala data z průzkumů k měření dopadu sociálních programů. Vytvořila zprávy, které pomohly zajistit dodatečné financování.",
+        },
+        {
+          title: "Mentorka Mezinárodních Studentů",
+          organization: "Mezinárodní kancelář univerzity",
+          period: "2019 - 2022",
+          description:
+            "Mentorovala příchozí mezinárodní studenty, pomáhala jim přizpůsobit se akademickému a kulturnímu prostředí.",
+        },
+      ],
+    },
+    contact: {
+      title: "Kontaktujte Mě",
+      subtitle: "Neváhejte mě kontaktovat ohledně spolupráce nebo příležitostí",
+      email: "mariia.priakhina@email.com",
+      linkedin: "linkedin.com/in/mariia-priakhina",
+      mastodon: "@mariia@mastodon.social",
     },
   },
   ru: {
     nav: {
-      about: "Обо мне",
+      about: "Обо Мне",
       experience: "Опыт",
       researches: "Исследования",
-      volunteer: "Волонтерство",
+      volunteer: "Волонтёрство",
       contact: "Контакты",
     },
     about: {
-      title: "Обо мне",
-      description:
-        "Привет!! Я студентка двойного диплома Уральского федерального университета и KEDGE Business School во Франции. Я увлечена анализом данных и исследованиями рынка. Я с нетерпением жду возможности построить свою карьеру в этих областях. Я не боюсь цифр и сложных задач. У меня есть опыт использования Python (pandas, numpy) для анализа данных, Excel и Google Sheets для отчетности, а также Python или Tableau для визуализации.\n\nЯ привношу красоту, ум и талант во все, что делаю.",
-      ctaButton: "Связаться со мной",
+      title: "Обо Мне",
+      name: "Мария Приахина",
+      role: "Бизнес-Аналитик | Исследователь Рынка | Аналитик Данных",
+      bio: "Студентка международной экономики и бизнеса с страстью к принятию решений на основе данных и анализу рынка. Я сочетаю аналитическое мышление с деловой хваткой для выявления инсайтов, которые способствуют стратегическому росту и решают сложные бизнес-задачи.",
+      ctaButton: "Свяжитесь со Мной",
     },
     experience: {
-      title: "Опыт работы",
+      title: "Профессиональный Опыт",
       jobs: [
         {
-          title: "Стажер по маркетингу",
-          company: "SMARTGEN Wealth Management",
-          period: "Март 2025 - настоящее время",
-          description: [
-            "Проанализировал 30 конкурентов в сфере управления капиталом и создал стратегическое справочное руководство для команды",
-            "Разработал Telegram-бот на Python, который автоматизирует мониторинг обновлений конкурентов в режиме реального времени (сокращение ежедневного времени ручного отслеживания до 4 часов для команды)",
+          title: "Младший Бизнес-Аналитик",
+          company: "Global Markets Corp",
+          period: "2023 - Настоящее время",
+          tasks: [
+            "Анализировала рыночные тренды и модели поведения потребителей статистическими методами",
+            "Создавала комплексные бизнес-отчёты и визуализации данных для заинтересованных сторон",
+            "Проводила конкурентный анализ и исследования рынка для новых продуктов",
+            "Сотрудничала с межфункциональными командами для выявления бизнес-возможностей",
           ],
         },
         {
-          title: "Администратор проекта",
-          company: "Unilever",
-          period: "Март - Май 2024",
-          description: [
-            "Работал над проектом развития корпоративной культуры",
-            'Разработал тематическую викторину "UniQuiz" об истории фабрики "Калина" и Unilever',
-            "Викторина была проведена для 30 детей сотрудников и получила положительные отзывы в рамках корпоративного мероприятия",
+          title: "Стажёр-Исследователь Рынка",
+          company: "Институт экономических исследований",
+          period: "2022 - 2023",
+          tasks: [
+            "Разрабатывала и проводила опросы для изучения поведения потребителей",
+            "Выполняла количественный анализ данных международной торговли",
+            "Готовила отчёты рыночной разведки для государственных агентств",
+            "Помогала в создании экономических прогнозных моделей и анализе трендов",
           ],
         },
         {
-          title: "Ассистент",
-          company: "Haensch",
-          period: "Ноябрь - Декабрь 2023",
-          description: [
-            "Исследовал правила сертификации для 40 пар отрасль-страна для внутреннего анализа рынка",
-            "Провел исследование сертификации для 4 стран по нескольким отраслям",
-            "Результаты были включены в руководство по сертификации продукции, разработанное в сотрудничестве с Российским экспортным центром",
+          title: "Ассистент по Анализу Данных",
+          company: "Группа бизнес-консалтинга",
+          period: "2021 - 2022",
+          tasks: [
+            "Обрабатывала и анализировала большие наборы данных с помощью Excel, R и Python",
+            "Создавала интерактивные дашборды для клиентских презентаций",
+            "Поддерживала старших аналитиков в проектах сегментации рынка",
+            "Поддерживала качество данных и выполняла проверки валидации",
           ],
         },
       ],
     },
     researches: {
-      title: "Исследовательские проекты",
+      title: "Исследовательские Проекты",
       projects: [
         {
-          title: "Факторы, влияющие на цены на такси",
+          title: "Поведение Потребителей на Цифровых Рынках",
           description:
-            "Провел полномасштабный исследовательский проект с использованием оригинальных данных опроса, собранных у 116 студентов университета. Провел статистический и эконометрический анализ для выявления ключевых факторов, определяющих цены на такси. Использовал такие инструменты, как регрессионное моделирование и корреляционный анализ для количественной оценки влияния каждого фактора.",
-          period: "2024",
+            "Комплексный анализ моделей покупок в электронной коммерции и предпочтений цифровых потребителей с использованием техник машинного обучения.",
+          link: "#",
         },
         {
-          title: "Анализ потребительского поведения на рынке мобильной связи на примере Tele2",
+          title: "Анализ Влияния Международной Торговли",
           description:
-            "Проанализировал тарифные предпочтения клиентов, используя в качестве примера реального оператора мобильной связи. Построил кривые безразличия потребителей для различных сегментов населения и определил оптимальные тарифные планы. Предоставил рекомендации, которые продемонстрировали снижение затрат до 40% для определенных групп пользователей. Опубликовано в 2024 году в рамках сборника исследований по цифровой экономике и потребительскому поведению.",
-          period: "2024",
+            "Исследование влияния торговой политики на развивающиеся рынки, сосредоточенное на экономических показателях и изменениях бизнес-среды.",
+          link: "#",
         },
         {
-          title: "Ключевые изменения в учете материально-производственных запасов",
+          title: "Сегментация Рынка Устойчивых Продуктов",
           description:
-            "Исследование, сосредоточенное на анализе развивающихся стандартов и практик в учете запасов, изучении регулятивных изменений и их влиянии на бизнес-операции.",
-          period: "2024",
-        },
-        {
-          title: "Текущие изменения в федеральных стандартах бухгалтерского учета: необходимость во времена перемен",
-          description:
-            "Комплексный анализ модификаций федеральных стандартов бухгалтерского учета и их стратегической важности в периоды экономических и регулятивных трансформаций.",
-          period: "2025",
-        },
-        {
-          title: "Динамика экономического сотрудничества между Китаем и Россией в условиях экономических ограничений",
-          description:
-            "Углубленное изучение двусторонних торговых отношений и экономических партнерств между Китаем и Россией, анализ стратегий адаптации в условиях международных санкций и ограничений.",
-          period: "2025",
+            "Исследование сегментов потребителей, заинтересованных в устойчивых продуктах, анализ демографических и психографических факторов.",
+          link: "#",
         },
       ],
     },
     volunteer: {
-      title: "Волонтерский опыт",
+      title: "Волонтёрский Опыт",
       activities: [
         {
-          title: "Гид",
-          organization: "ИННОПРОМ",
-          period: "Июль 2023",
-          description: [
-            "Проводил экскурсии для иностранных гостей на русском и английском языках, координировал поток посетителей и оказывал логистическую поддержку на месте",
-            "Представлял принимающую страну перед иностранными делегациями и обеспечивал беспрепятственный и информативный опыт посещения",
-            "Лично провел VIP-тур для делегации из Зимбабве, что способствовало профессиональному имиджу мероприятия и его международному охвату",
-          ],
+          title: "Координатор Экономического Образования",
+          organization: "Фонд молодёжной экономики",
+          period: "2020 - Настоящее время",
+          description:
+            "Организовывала семинары по финансовой грамотности и экономическим принципам для старшеклассников. Разработала образовательные материалы и наставляла более 200 студентов.",
         },
         {
-          title: "Координатор волонтеров",
-          organization: "Комитет Международного фестиваля университетского спорта",
-          period: "Июль - Сентябрь 2023",
-          description: [
-            "Помогал иностранным спортсменам и членам делегаций с размещением, местным транспортом и ориентацией по городу",
-            "Выступал в качестве культурного посредника между международными участниками и местными организаторами, обеспечивая беспрепятственное общение и комфорт во время мероприятия",
-            "Помогал поддерживать репутацию фестиваля за гостеприимство и операционное совершенство в международной среде с высоким давлением",
-          ],
+          title: "Волонтёр-Аналитик Данных",
+          organization: "Местная НКО социального развития",
+          period: "2021 - 2023",
+          description:
+            "Анализировала данные опросов для измерения воздействия социальных программ. Создала отчёты, которые помогли получить дополнительное финансирование.",
+        },
+        {
+          title: "Наставник Международных Студентов",
+          organization: "Международный офис университета",
+          period: "2019 - 2022",
+          description:
+            "Наставляла прибывающих международных студентов, помогая им адаптироваться к академической и культурной среде.",
         },
       ],
     },
     contact: {
-      title: "Связаться со мной",
-      description:
-        "Я всегда заинтересована в обсуждении новых возможностей в бизнес-анализе, исследовании рынка или анализе данных. Не стесняйтесь обращаться!",
-      email: "mariiapriakhina@gmail.com",
-      linkedin: "https://www.linkedin.com/in/mariiapriakhina/",
-      phone: "+33759314454",
+      title: "Свяжитесь со Мной",
+      subtitle: "Не стесняйтесь обращаться по поводу сотрудничества или возможностей",
+      email: "mariia.priakhina@email.com",
+      linkedin: "linkedin.com/in/mariia-priakhina",
+      mastodon: "@mariia@mastodon.social",
     },
   },
 }
 
-// Brand Logo Components
-const GmailLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6">
-    <path
-      d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 10.09l9.454-6.269h.91c.904 0 1.636.732 1.636 1.636z"
-      fill="#EA4335"
-    />
-  </svg>
-)
-
-const LinkedInLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6">
-    <path
-      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-      fill="#0077B5"
-    />
-  </svg>
-)
-
-const WhatsAppLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6">
-    <path
-      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"
-      fill="#25D366"
-    />
-  </svg>
-)
-
 export default function ResumePage() {
-  const [language, setLanguage] = useState<"en" | "fr" | "ru">("en")
+  const [language, setLanguage] = useState<"en" | "fr" | "cs" | "ru">("en")
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const [activeSection, setActiveSection] = useState("about")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const lastScrollY = useRef(0)
-  const [scrollY, setScrollY] = useState(0)
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
-  const languages = [
-    { code: "en" as const, name: "English", flag: "🇺🇸" },
-    { code: "fr" as const, name: "Français", flag: "🇫🇷" },
-    { code: "ru" as const, name: "Русский", flag: "🇷🇺" },
-  ]
+  const aboutRef = useRef<HTMLElement>(null)
+  const experienceRef = useRef<HTMLElement>(null)
+  const researchesRef = useRef<HTMLElement>(null)
+  const volunteerRef = useRef<HTMLElement>(null)
+  const contactRef = useRef<HTMLElement>(null)
 
   const t = content[language]
 
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+  const languages = [
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "fr", name: "Français", flag: "🇫🇷" },
+    { code: "cs", name: "Čeština", flag: "🇨🇿" },
+    { code: "ru", name: "Русский", flag: "🇷🇺" },
+  ]
 
-  // Theme detection and management
+  // Theme initialization and management
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-      document.documentElement.classList.toggle("dark", savedTheme === "dark")
+    const root = document.documentElement
+
+    // Check if user has a stored preference
+    const storedTheme = localStorage.getItem("theme") as "light" | "dark" | null
+
+    if (storedTheme) {
+      // Use stored preference
+      setTheme(storedTheme)
+      if (storedTheme === "dark") {
+        root.classList.add("dark")
+      } else {
+        root.classList.remove("dark")
+      }
     } else {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-      setTheme(systemTheme)
-      document.documentElement.classList.toggle("dark", systemTheme === "dark")
+      // Detect system preference on first load
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      const initialTheme = systemPrefersDark ? "dark" : "light"
+      setTheme(initialTheme)
+
+      if (initialTheme === "dark") {
+        root.classList.add("dark")
+      } else {
+        root.classList.remove("dark")
+      }
     }
   }, [])
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
-    document.documentElement.classList.toggle("dark", newTheme === "dark")
-  }
 
   // Header scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      setIsHeaderVisible(currentScrollY < lastScrollY.current || currentScrollY < 10)
-      lastScrollY.current = currentScrollY
+
+      if (currentScrollY < 10) {
+        setIsHeaderVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsHeaderVisible(false)
+      } else if (currentScrollY < lastScrollY) {
+        setIsHeaderVisible(true)
+      }
+
+      setLastScrollY(currentScrollY)
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   // Active section detection
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["about", "experience", "researches", "volunteer", "contact"]
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
           }
-        }
+        })
+      },
+      { threshold: 0.3, rootMargin: "-100px 0px -50% 0px" },
+    )
+
+    const sections = [aboutRef, experienceRef, researchesRef, volunteerRef, contactRef]
+    sections.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isLanguageDropdownOpen) {
+        setIsLanguageDropdownOpen(false)
       }
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [isLanguageDropdownOpen])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const yOffset = -120 // Scroll higher by adding more offset
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
-      window.scrollTo({ top: y, behavior: "smooth" })
-    }
-    setIsMobileMenuOpen(false)
-  }
-
-  const scrollToContact = () => {
-    scrollToSection("contact")
-  }
-
-  const [aboutDescriptionPart1, aboutDescriptionPart2] = t.about.description.split("\n\n")
-
-  // Update the mobile menu toggle function
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
-
-  // Add a function to handle language dropdown in mobile
-  const handleLanguageToggle = () => {
-    if (isMobile && isMobileMenuOpen) {
+      element.scrollIntoView({ behavior: "smooth" })
       setIsMobileMenuOpen(false)
     }
   }
 
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light"
+    setTheme(newTheme)
+
+    // Store preference in localStorage
+    localStorage.setItem("theme", newTheme)
+
+    // Apply theme
+    const root = document.documentElement
+    if (newTheme === "dark") {
+      root.classList.add("dark")
+    } else {
+      root.classList.remove("dark")
+    }
+  }
+
+  const selectLanguage = (langCode: "en" | "fr" | "cs" | "ru") => {
+    setLanguage(langCode)
+    setIsLanguageDropdownOpen(false)
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-gray-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 dark:from-slate-900 dark:via-blue-gray-900/30 dark:to-slate-900 transition-colors duration-300">
       {/* Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
           isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-        } bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700`}
+        } bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700/50`}
       >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between min-h-[40px]">
-            <h1
-              className="text-xl font-bold bg-gradient-to-r from-slate-600 to-blue-600 dark:from-slate-300 dark:to-blue-400 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
-              onClick={() => scrollToSection("about")}
-            >
-              Mariia Priakhina
-            </h1>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="font-bold text-xl bg-gradient-to-r from-slate-600 to-blue-600 bg-clip-text text-transparent">
+              MP
+            </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8 flex-shrink-0">
+            <nav className="hidden md:flex space-x-8">
               {Object.entries(t.nav).map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => scrollToSection(key)}
-                  className={`text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap ${
-                    activeSection === key ? "text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    activeSection === key
+                      ? "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/70"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                   }`}
                 >
                   {label}
@@ -541,114 +643,142 @@ export default function ResumePage() {
             </nav>
 
             {/* Controls */}
-            <div className="flex items-center space-x-4 flex-shrink-0">
+            <div className="flex items-center space-x-2">
               {/* Theme Toggle */}
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 onClick={toggleTheme}
-                className="p-2 transition-colors duration-150 w-10 h-10"
+                className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
+                title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
               >
-                {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-              </Button>
+                {theme === "light" ? (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                )}
+              </button>
 
               {/* Language Dropdown */}
-              <DropdownMenu onOpenChange={handleLanguageToggle}>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="p-2 transition-colors duration-150 w-10 h-10">
-                    <Globe className="w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" side="bottom" sideOffset={4} className="min-w-[120px]">
-                  {languages.map((lang) => (
-                    <DropdownMenuItem
-                      key={lang.code}
-                      onClick={() => setLanguage(lang.code)}
-                      className={language === lang.code ? "bg-slate-100 dark:bg-slate-800" : ""}
-                    >
-                      {!isMobile && <span className="mr-2">{lang.flag}</span>}
-                      {lang.name}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div className="relative">
+                <button
+                  onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                  className="flex items-center space-x-1 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
+                >
+                  <Globe className="w-4 h-4" />
+                  <ChevronDown className="w-3 h-3" />
+                </button>
 
-              {/* Mobile Menu Toggle */}
-              <Button variant="ghost" size="sm" className="md:hidden p-2 w-10 h-10" onClick={toggleMobileMenu}>
-                {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-              </Button>
+                {isLanguageDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-50">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => selectLanguage(lang.code as "en" | "fr" | "cs" | "ru")}
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center space-x-3 ${
+                          language === lang.code
+                            ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+                            : "text-slate-700 dark:text-slate-300"
+                        }`}
+                      >
+                        <span>{lang.flag}</span>
+                        <span>{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/70 transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <div className="w-5 h-5 relative">
+                    <div className="absolute inset-0 w-5 h-0.5 bg-current transform rotate-45 translate-y-2"></div>
+                    <div className="absolute inset-0 w-5 h-0.5 bg-current transform -rotate-45 translate-y-2"></div>
+                  </div>
+                ) : (
+                  <div className="w-5 h-5 relative">
+                    <div className="absolute top-1 w-5 h-0.5 bg-current"></div>
+                    <div className="absolute top-2 w-5 h-0.5 bg-current"></div>
+                    <div className="absolute top-3 w-5 h-0.5 bg-current"></div>
+                  </div>
+                )}
+              </button>
             </div>
           </div>
 
           {/* Mobile Navigation */}
           {isMobileMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 border-t border-slate-200 dark:border-slate-700 pt-4">
-              <div className="flex flex-col space-y-2">
+            <div className="md:hidden py-4 border-t border-slate-200 dark:border-slate-700/50">
+              <nav className="flex flex-col space-y-2">
                 {Object.entries(t.nav).map(([key, label]) => (
                   <button
                     key={key}
                     onClick={() => scrollToSection(key)}
-                    className={`text-left py-2 px-4 rounded-md transition-colors ${
+                    className={`px-3 py-2 rounded-md text-left transition-colors ${
                       activeSection === key
-                        ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
-                        : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                        ? "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/70"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                     }`}
                   >
                     {label}
                   </button>
                 ))}
-              </div>
-            </nav>
+              </nav>
+            </div>
           )}
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="pt-20">
+      <main className="pt-16">
         {/* About Section */}
-        <section id="about" className="py-20 bg-transparent">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:items-start md:gap-12">
-              <div className="flex-shrink-0 w-64 h-64 mx-auto md:mx-0 mb-8 md:mb-0">
-                <img
-                  src="/profile-photo.jpg"
-                  alt="Mariia Priakhina"
-                  className="w-full h-full rounded-2xl object-cover border-8 border-white dark:border-slate-700 shadow-lg"
-                />
+        <section
+          id="about"
+          ref={aboutRef}
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-slate-900/50 dark:to-blue-gray-900/50"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-slate-400 to-blue-500 p-1">
+                <div className="w-full h-full rounded-full bg-white dark:bg-slate-800 flex items-center justify-center">
+                  <img
+                    src="/placeholder.svg?height=120&width=120"
+                    alt={t.about.name}
+                    className="w-28 h-28 rounded-full object-cover"
+                  />
+                </div>
               </div>
-              <div className="text-center md:text-left flex-grow">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                  <span
-                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
-                    style={{
-                      backgroundSize: "300% 300%",
-                      animation: `gradient-flow 6s ease-in-out infinite`,
-                      filter: `hue-rotate(${scrollY * 0.2}deg)`,
-                    }}
-                  >
-                    Mariia Priakhina
-                  </span>
-                </h2>
-                <p className="text-xl text-slate-600 dark:text-slate-300 mb-4">Business Analyst | Market Researcher</p>
-                <p className="text-lg text-slate-500 dark:text-slate-400 mb-8">
-                  International Economics and Business Student
-                </p>
-                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4 mt-8 max-w-3xl mx-auto md:mx-0">
-                  {aboutDescriptionPart1}
-                </p>
-                {aboutDescriptionPart2 && (
-                  <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-3xl mx-auto md:mx-0">
-                    {aboutDescriptionPart2}
-                  </p>
-                )}
-                <Button
-                  onClick={scrollToContact}
-                  size="lg"
-                  className="bg-gradient-to-r from-slate-600 to-blue-600 hover:from-slate-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  {t.about.ctaButton}
-                </Button>
-              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-slate-600 via-blue-600 to-slate-700 bg-clip-text text-transparent">
+                  {t.about.name}
+                </span>
+              </h1>
+              <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">{t.about.role}</p>
+              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+                {t.about.bio}
+              </p>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-slate-600 to-blue-600 text-white font-medium rounded-lg hover:from-slate-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                {t.about.ctaButton}
+              </button>
             </div>
           </div>
         </section>
@@ -656,80 +786,71 @@ export default function ResumePage() {
         {/* Experience Section */}
         <section
           id="experience"
-          className="py-20 bg-gradient-to-br from-slate-100 to-blue-100 dark:from-slate-800 dark:to-slate-700"
+          ref={experienceRef}
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-100/80 to-gray-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80"
         >
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
-                {t.experience.title}
-              </h2>
-              <div className="space-y-8">
-                {t.experience.jobs.map((job, index) => (
-                  <Card key={index} className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-1">{job.title}</h3>
-                          <p className="text-blue-600 dark:text-blue-400 font-medium">{job.company}</p>
-                        </div>
-                        <span className="text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0">{job.period}</span>
-                      </div>
-                      <ul className="space-y-2">
-                        {job.description.map((item, idx) => (
-                          <li key={idx} className="text-slate-600 dark:text-slate-300 flex items-start">
-                            <span className="text-blue-500 mr-2 mt-1.5 text-xs">●</span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">
+              {t.experience.title}
+            </h2>
+            <div className="space-y-8">
+              {t.experience.jobs.map((job, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{job.title}</h3>
+                      <p className="text-slate-600 dark:text-slate-400 font-medium">{job.company}</p>
+                    </div>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 mt-2 sm:mt-0">{job.period}</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {job.tasks.map((task, taskIndex) => (
+                      <li key={taskIndex} className="flex items-start">
+                        <span className="w-2 h-2 bg-slate-400 rounded-full mt-2 mr-3 flex-shrink-0" />
+                        <span className="text-slate-700 dark:text-slate-300">{task}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Research Section */}
-        <section id="researches" className="py-20 bg-transparent">
-          <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
-                {t.researches.title}
-              </h2>
-              <div className="relative">
-                <Carousel
-                  className="w-full"
-                  opts={{
-                    align: "start",
-                    loop: false,
-                  }}
+        <section
+          id="researches"
+          ref={researchesRef}
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50/80 to-purple-50/80 dark:from-blue-gray-900/50 dark:to-slate-900/80"
+        >
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">
+              {t.researches.title}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {t.researches.projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
                 >
-                  <CarouselContent className="-ml-2 md:-ml-4">
-                    {t.researches.projects.map((project, index) => (
-                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-[45%] lg:basis-[40%]">
-                        <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                          <CardContent className="p-6 flex flex-col h-full min-h-[280px]">
-                            <div className="flex justify-between items-start mb-4">
-                              <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 leading-tight flex-grow pr-2">
-                                {project.title}
-                              </h3>
-                              <span className="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">
-                                {project.period}
-                              </span>
-                            </div>
-                            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-grow">
-                              {project.description || "Research project details coming soon."}
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
-                  <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
-                </Carousel>
-              </div>
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+                  <a
+                    href={project.link}
+                    className="inline-flex items-center text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 text-sm font-medium transition-colors"
+                  >
+                    Read More
+                    <ChevronUp className="w-4 h-4 ml-1 rotate-45" />
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -737,88 +858,80 @@ export default function ResumePage() {
         {/* Volunteer Section */}
         <section
           id="volunteer"
-          className="py-20 bg-gradient-to-br from-slate-100 to-blue-100 dark:from-slate-800 dark:to-slate-700"
+          ref={volunteerRef}
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-100/80 to-blue-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80"
         >
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
-                {t.volunteer.title}
-              </h2>
-              <div className="space-y-8">
-                {t.volunteer.activities.map((activity, index) => (
-                  <Card key={index} className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-1">
-                            {activity.title}
-                          </h3>
-                          <p className="text-blue-600 dark:text-blue-400 font-medium">{activity.organization}</p>
-                        </div>
-                        <span className="text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0">
-                          {activity.period}
-                        </span>
-                      </div>
-                      <ul className="space-y-2">
-                        {activity.description.map((item, idx) => (
-                          <li key={idx} className="text-slate-600 dark:text-slate-300 flex items-start">
-                            <span className="text-blue-500 mr-2 mt-1.5 text-xs">●</span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-16">{t.volunteer.title}</h2>
+            <div className="space-y-8">
+              {t.volunteer.activities.map((activity, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{activity.title}</h3>
+                      <p className="text-slate-600 dark:text-slate-400 font-medium">{activity.organization}</p>
+                    </div>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 mt-2 sm:mt-0">{activity.period}</span>
+                  </div>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{activity.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 bg-transparent">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-800 dark:text-slate-200">
-                {t.contact.title}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">{t.contact.description}</p>
-              <div className="flex flex-col items-center justify-center space-y-6">
-                <a
-                  href={t.contact.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
-                >
-                  <LinkedInLogo />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={`mailto:${t.contact.email}`}
-                  className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
-                >
-                  <GmailLogo />
-                  <span>{t.contact.email}</span>
-                </a>
-                <a
-                  href={`https://wa.me/${t.contact.phone}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
-                >
-                  <WhatsAppLogo />
-                  <span>{t.contact.phone}</span>
-                </a>
-              </div>
+        <section
+          id="contact"
+          ref={contactRef}
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50/80 to-pink-50/80 dark:from-blue-gray-900/50 dark:to-slate-900/80"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t.contact.title}</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">{t.contact.subtitle}</p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
+              <a
+                href={`mailto:${t.contact.email}`}
+                className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+              >
+                <GmailIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span className="text-slate-700 dark:text-slate-300">{t.contact.email}</span>
+              </a>
+
+              <a
+                href={`https://${t.contact.linkedin}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+              >
+                <LinkedInIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span className="text-slate-700 dark:text-slate-300">LinkedIn</span>
+              </a>
+
+              <a
+                href={`https://mastodon.social/${t.contact.mastodon}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 px-6 py-3 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-200 dark:border-slate-700/50 hover:shadow-lg transition-shadow group"
+              >
+                <MastodonIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span className="text-slate-700 dark:text-slate-300">Mastodon</span>
+              </a>
             </div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="py-8 bg-transparent">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-600 dark:text-slate-400">© 2025 Mariia Priakhina. All rights reserved.</p>
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-700/50 bg-gradient-to-br from-slate-100/80 to-gray-100/80 dark:from-slate-800/80 dark:to-blue-gray-800/80">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-slate-500 dark:text-slate-400 text-sm">
+            © 2024 {t.about.name}. Built with React & Next.js
+          </p>
         </div>
       </footer>
     </div>
