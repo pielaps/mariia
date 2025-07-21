@@ -483,7 +483,9 @@ export default function ResumePage() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const yOffset = -120 // Scroll higher by adding more offset
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: "smooth" })
     }
     setIsMobileMenuOpen(false)
   }
@@ -515,18 +517,21 @@ export default function ResumePage() {
         } bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700`}
       >
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold bg-gradient-to-r from-slate-600 to-blue-600 dark:from-slate-300 dark:to-blue-400 bg-clip-text text-transparent">
+          <div className="flex items-center justify-between min-h-[40px]">
+            <h1
+              className="text-xl font-bold bg-gradient-to-r from-slate-600 to-blue-600 dark:from-slate-300 dark:to-blue-400 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
+              onClick={() => scrollToSection("about")}
+            >
               Mariia Priakhina
             </h1>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-8 flex-shrink-0">
               {Object.entries(t.nav).map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => scrollToSection(key)}
-                  className={`text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+                  className={`text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap ${
                     activeSection === key ? "text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300"
                   }`}
                 >
@@ -536,20 +541,25 @@ export default function ResumePage() {
             </nav>
 
             {/* Controls */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-shrink-0">
               {/* Theme Toggle */}
-              <Button variant="ghost" size="sm" onClick={toggleTheme} className="p-2 transition-colors duration-150">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleTheme}
+                className="p-2 transition-colors duration-150 w-10 h-10"
+              >
                 {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
               </Button>
 
               {/* Language Dropdown */}
               <DropdownMenu onOpenChange={handleLanguageToggle}>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="p-2 transition-colors duration-150">
+                  <Button variant="ghost" size="sm" className="p-2 transition-colors duration-150 w-10 h-10">
                     <Globe className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" side="bottom" className="min-w-[120px]">
+                <DropdownMenuContent align="end" side="bottom" sideOffset={4} className="min-w-[120px]">
                   {languages.map((lang) => (
                     <DropdownMenuItem
                       key={lang.code}
@@ -564,7 +574,7 @@ export default function ResumePage() {
               </DropdownMenu>
 
               {/* Mobile Menu Toggle */}
-              <Button variant="ghost" size="sm" className="md:hidden p-2" onClick={toggleMobileMenu}>
+              <Button variant="ghost" size="sm" className="md:hidden p-2 w-10 h-10" onClick={toggleMobileMenu}>
                 {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
               </Button>
             </div>
@@ -697,7 +707,7 @@ export default function ResumePage() {
                 >
                   <CarouselContent className="-ml-2 md:-ml-4">
                     {t.researches.projects.map((project, index) => (
-                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-[40%]">
+                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-[45%] lg:basis-[40%]">
                         <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                           <CardContent className="p-6 flex flex-col h-full min-h-[280px]">
                             <div className="flex justify-between items-start mb-4">
@@ -716,8 +726,8 @@ export default function ResumePage() {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="hidden md:flex -left-12" />
-                  <CarouselNext className="hidden md:flex -right-12" />
+                  <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
+                  <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
                 </Carousel>
               </div>
             </div>
