@@ -16,29 +16,22 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  .animate-gradient-x {
-    animation: gradient-x 8s ease infinite;
-  }
 }
 
-@keyframes gradient-x {
+/* Fluid gradient animation for name */
+@keyframes gradient-flow {
   0%,
   100% {
     background-position: 0% 50%;
   }
-  50% {
+  25% {
     background-position: 100% 50%;
   }
-}
-
-@keyframes gradient-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
   50% {
-    background-position: 100% 50%;
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 100% 0%;
   }
 }
 
@@ -71,9 +64,47 @@
   transition-duration: 100ms;
 }
 
+/* Prevent layout shift during dropdown animations */
+[data-radix-popper-content-wrapper] {
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Stable footer positioning */
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dropdown animation override */
+[data-side="bottom"] {
+  animation: slideDown 150ms ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Carousel improvements for mobile */
 @media (max-width: 768px) {
   .carousel-item {
     scroll-snap-align: center;
   }
+}
+
+/* Ensure stable layout during dropdown */
+body {
+  overflow-anchor: none;
+}
+
+/* Prevent content jumping */
+.container {
+  contain: layout;
 }

@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Globe, Sun, Moon, Menu, X } from "lucide-react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { Mail, Linkedin, MessageCircle } from "lucide-react"
 
 // Language content
 const content = {
@@ -75,17 +74,20 @@ const content = {
         },
         {
           title: "Key changes in accounting for material and production inventory",
-          description: "",
+          description:
+            "Research focused on analyzing the evolving standards and practices in inventory accounting, examining regulatory changes and their impact on business operations.",
           period: "2024",
         },
         {
           title: "Current changes in federal accounting standards: necessity in times of change",
-          description: "",
+          description:
+            "Comprehensive analysis of federal accounting standard modifications and their strategic importance during periods of economic and regulatory transformation.",
           period: "2025",
         },
         {
           title: "Dynamics of economic cooperation between China and Russia under economic restrictions",
-          description: "",
+          description:
+            "In-depth study of bilateral trade relationships and economic partnerships between China and Russia, analyzing adaptation strategies under international sanctions and restrictions.",
           period: "2025",
         },
       ],
@@ -190,18 +192,21 @@ const content = {
         },
         {
           title: "Principaux changements dans la comptabilisation des stocks de matières et de production",
-          description: "",
+          description:
+            "Recherche axée sur l'analyse des normes et pratiques évolutives en comptabilité des stocks, examinant les changements réglementaires et leur impact sur les opérations commerciales.",
           period: "2024",
         },
         {
           title: "Changements actuels dans les normes comptables fédérales : nécessité en période de changement",
-          description: "",
+          description:
+            "Analyse complète des modifications des normes comptables fédérales et de leur importance stratégique pendant les périodes de transformation économique et réglementaire.",
           period: "2025",
         },
         {
           title:
             "Dynamique de la coopération économique entre la Chine et la Russie dans le cadre de restrictions économiques",
-          description: "",
+          description:
+            "Étude approfondie des relations commerciales bilatérales et des partenariats économiques entre la Chine et la Russie, analysant les stratégies d'adaptation sous les sanctions et restrictions internationales.",
           period: "2025",
         },
       ],
@@ -305,17 +310,20 @@ const content = {
         },
         {
           title: "Ключевые изменения в учете материально-производственных запасов",
-          description: "",
+          description:
+            "Исследование, сосредоточенное на анализе развивающихся стандартов и практик в учете запасов, изучении регулятивных изменений и их влиянии на бизнес-операции.",
           period: "2024",
         },
         {
           title: "Текущие изменения в федеральных стандартах бухгалтерского учета: необходимость во времена перемен",
-          description: "",
+          description:
+            "Комплексный анализ модификаций федеральных стандартов бухгалтерского учета и их стратегической важности в периоды экономических и регулятивных трансформаций.",
           period: "2025",
         },
         {
           title: "Динамика экономического сотрудничества между Китаем и Россией в условиях экономических ограничений",
-          description: "",
+          description:
+            "Углубленное изучение двусторонних торговых отношений и экономических партнерств между Китаем и Россией, анализ стратегий адаптации в условиях международных санкций и ограничений.",
           period: "2025",
         },
       ],
@@ -356,9 +364,33 @@ const content = {
   },
 }
 
-// Custom icons
-// Remove the custom GmailIcon, LinkedInIcon, and WhatsAppIcon components
-// They will be replaced with Lucide icons
+// Brand Logo Components
+const GmailLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6">
+    <path
+      d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 10.09l9.454-6.269h.91c.904 0 1.636.732 1.636 1.636z"
+      fill="#EA4335"
+    />
+  </svg>
+)
+
+const LinkedInLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6">
+    <path
+      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+      fill="#0077B5"
+    />
+  </svg>
+)
+
+const WhatsAppLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6">
+    <path
+      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"
+      fill="#25D366"
+    />
+  </svg>
+)
 
 export default function ResumePage() {
   const [language, setLanguage] = useState<"en" | "fr" | "ru">("en")
@@ -517,7 +549,7 @@ export default function ResumePage() {
                     <Globe className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" side="bottom" className="min-w-[120px]">
                   {languages.map((lang) => (
                     <DropdownMenuItem
                       key={lang.code}
@@ -577,18 +609,18 @@ export default function ResumePage() {
               <div className="text-center md:text-left flex-grow">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
                   <span
-                    className="bg-gradient-to-r from-slate-600 via-blue-600 to-purple-600 dark:from-slate-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient-x"
+                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
                     style={{
-                      backgroundSize: "200% 200%",
-                      animation: `gradient-shift 8s ease infinite, gradient-scroll 0.1s linear infinite`,
-                      transform: `hue-rotate(${scrollY * 0.1}deg)`,
+                      backgroundSize: "300% 300%",
+                      animation: `gradient-flow 6s ease-in-out infinite`,
+                      filter: `hue-rotate(${scrollY * 0.2}deg)`,
                     }}
                   >
                     Mariia Priakhina
                   </span>
                 </h2>
-                <p className="text-xl text-slate-600 dark:text-slate-300 mb-2">Business Analyst | Market Researcher</p>
-                <p className="text-lg text-slate-500 dark:text-slate-400">
+                <p className="text-xl text-slate-600 dark:text-slate-300 mb-4">Business Analyst | Market Researcher</p>
+                <p className="text-lg text-slate-500 dark:text-slate-400 mb-8">
                   International Economics and Business Student
                 </p>
                 <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4 mt-8 max-w-3xl mx-auto md:mx-0">
@@ -648,38 +680,46 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Research Section - Replace the entire section */}
+        {/* Research Section */}
         <section id="researches" className="py-20 bg-transparent">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
                 {t.researches.title}
               </h2>
-              <Carousel className="w-full">
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {t.researches.projects.map((project, index) => (
-                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                      <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                        <CardContent className="p-6 flex flex-col h-full">
-                          <div className="flex justify-between items-start mb-3">
-                            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 leading-tight flex-grow">
-                              {project.title}
-                            </h3>
-                            <span className="text-xs text-slate-500 dark:text-slate-400 ml-2 flex-shrink-0 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">
-                              {project.period}
-                            </span>
-                          </div>
-                          <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-grow">
-                            {project.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
+              <div className="relative">
+                <Carousel
+                  className="w-full"
+                  opts={{
+                    align: "start",
+                    loop: false,
+                  }}
+                >
+                  <CarouselContent className="-ml-2 md:-ml-4">
+                    {t.researches.projects.map((project, index) => (
+                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-[40%]">
+                        <Card className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                          <CardContent className="p-6 flex flex-col h-full min-h-[280px]">
+                            <div className="flex justify-between items-start mb-4">
+                              <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 leading-tight flex-grow pr-2">
+                                {project.title}
+                              </h3>
+                              <span className="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">
+                                {project.period}
+                              </span>
+                            </div>
+                            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-grow">
+                              {project.description || "Research project details coming soon."}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="hidden md:flex -left-12" />
+                  <CarouselNext className="hidden md:flex -right-12" />
+                </Carousel>
+              </div>
             </div>
           </div>
         </section>
@@ -740,14 +780,14 @@ export default function ResumePage() {
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
                 >
-                  <Linkedin className="w-6 h-6" />
+                  <LinkedInLogo />
                   <span>LinkedIn</span>
                 </a>
                 <a
                   href={`mailto:${t.contact.email}`}
                   className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
                 >
-                  <Mail className="w-6 h-6" />
+                  <GmailLogo />
                   <span>{t.contact.email}</span>
                 </a>
                 <a
@@ -756,7 +796,7 @@ export default function ResumePage() {
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
                 >
-                  <MessageCircle className="w-6 h-6" />
+                  <WhatsAppLogo />
                   <span>{t.contact.phone}</span>
                 </a>
               </div>
